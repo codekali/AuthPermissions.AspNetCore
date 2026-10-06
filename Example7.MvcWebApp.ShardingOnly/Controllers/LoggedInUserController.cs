@@ -16,7 +16,7 @@ namespace Example7.MvcWebApp.ShardingOnly.Controllers
             return View(User);
         }
 
-        public async Task<IActionResult> AuthUserInfo([FromServices]IAuthUsersAdminService service)
+        public async Task<IActionResult> AuthUserInfo([FromServices] IAuthUsersAdminService service)
         {
             if (User.Identity?.IsAuthenticated == true)
             {

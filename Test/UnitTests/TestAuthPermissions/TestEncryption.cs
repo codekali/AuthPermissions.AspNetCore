@@ -36,6 +36,6 @@ public class TestEncryption
 
         //VERIFY
         decrypted.ShouldEqual(testString);
-        _output.WriteLine($"Original string length = {testString.Length}, encrypted string length = {encrypted.Length}, ratio = {encrypted.Length/testString.Length:P}");
+        _output.WriteLine($"Original string length = {testString.Length}, encrypted string length = {encrypted.Length}, ratio = {encrypted.Length / testString.Length:P}");
     }
 }

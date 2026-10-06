@@ -7,20 +7,20 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace Example4.ShopCode.EfCoreCode
 {
-    public class ShopDesignTimeContextFactory : IDesignTimeDbContextFactory<RetailDbContext>          
+    public class ShopDesignTimeContextFactory : IDesignTimeDbContextFactory<RetailDbContext>
     {
         // This connection links to an invalidate database, but that's OK as I only used the Add-Migration command
         private const string connectionString =
             "Server=(localdb)\\mssqllocaldb;Database=AuthPermissions;Trusted_Connection=True;MultipleActiveResultSets=true";
 
-        public RetailDbContext CreateDbContext(string[] args)   
+        public RetailDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder =                              
-                new DbContextOptionsBuilder<RetailDbContext>(); 
+            var optionsBuilder =
+                new DbContextOptionsBuilder<RetailDbContext>();
             optionsBuilder.UseSqlServer(connectionString, dbOptions =>
-                dbOptions.MigrationsHistoryTable(StartupExtensions.RetailDbContextHistoryName));    
+                dbOptions.MigrationsHistoryTable(StartupExtensions.RetailDbContextHistoryName));
 
-            return new RetailDbContext(optionsBuilder.Options, null); 
+            return new RetailDbContext(optionsBuilder.Options, null);
         }
     }
     /******************************************************************************

@@ -7,11 +7,11 @@ using Test.StubClasses;
 
 namespace Test.TestHelpers;
 
-public static class DefaultLocalizerHelpers 
+public static class DefaultLocalizerHelpers
 {
     public static IAuthPDefaultLocalizer SetupAuthPLoggingLocalizer(this string cultureOfMessage, Type resourceType = null)
     {
-        return new TestAuthPDefaultLocalizer( 
+        return new TestAuthPDefaultLocalizer(
             new StubDefaultLocalizerWithLogging(cultureOfMessage, resourceType ?? typeof(DefaultLocalizerHelpers)));
     }
 }

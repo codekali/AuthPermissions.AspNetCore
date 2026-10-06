@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
+using AuthPermissions.BaseCode.CommonCode;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using AuthPermissions.BaseCode.CommonCode;
 
 namespace AuthPermissions.BaseCode.PermissionsCode
 {
@@ -77,7 +77,7 @@ namespace AuthPermissions.BaseCode.PermissionsCode
                 try
                 {
                     Enum.Parse(enumPermissionsType, permissionName);
-                    var displayAttribute =  enumPermissionsType.GetMember(permissionName)[0].GetCustomAttribute<DisplayAttribute>();
+                    var displayAttribute = enumPermissionsType.GetMember(permissionName)[0].GetCustomAttribute<DisplayAttribute>();
                     if (displayAttribute?.GetAutoGenerateFilter() == true)
                         foundAdvancedPermission();
                 }
@@ -88,7 +88,7 @@ namespace AuthPermissions.BaseCode.PermissionsCode
                 }
 
                 packedPermissions +=
-                    (char) Convert.ChangeType(Enum.Parse(enumPermissionsType, permissionName), typeof(char));
+                    (char)Convert.ChangeType(Enum.Parse(enumPermissionsType, permissionName), typeof(char));
             }
             CheckPackedPermissionsDoesNotContainZeroChar(packedPermissions);
             return packedPermissions;

@@ -16,7 +16,7 @@ public class StubAddNewUserManager : IAddNewUserManager
     private readonly IAuthUsersAdminService _authUsersAdmin;
     private readonly bool _loginReturnsError;
 
-    public StubAddNewUserManager(IAuthUsersAdminService usersAdmin, 
+    public StubAddNewUserManager(IAuthUsersAdminService usersAdmin,
         AuthTenantAdminService authTenantAdmin = null,
         bool loginReturnsError = false)
     {

@@ -1,8 +1,6 @@
 // Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Text.Encodings.Web;
-using System.Text.Json;
 using AuthPermissions;
 using AuthPermissions.AspNetCore;
 using AuthPermissions.AspNetCore.Services;
@@ -21,6 +19,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Net.DistributedFileStoreCache;
 using RunMethodsSequentially;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 

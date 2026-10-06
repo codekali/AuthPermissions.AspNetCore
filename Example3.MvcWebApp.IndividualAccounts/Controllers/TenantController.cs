@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using AuthPermissions.AdminCode;
+﻿using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore;
 using AuthPermissions.AspNetCore.AccessTenantData;
 using AuthPermissions.BaseCode.CommonCode;
@@ -8,6 +6,8 @@ using Example3.MvcWebApp.IndividualAccounts.Models;
 using Example3.MvcWebApp.IndividualAccounts.PermissionsCode;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example3.MvcWebApp.IndividualAccounts.Controllers
 {
@@ -23,7 +23,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
         [HasPermission(Example3Permissions.TenantList)]
         public async Task<IActionResult> Index(string message)
         {
-            var tenantNames = await SingleLevelTenantDto.TurnIntoDisplayFormat( _authTenantAdmin.QueryTenants())
+            var tenantNames = await SingleLevelTenantDto.TurnIntoDisplayFormat(_authTenantAdmin.QueryTenants())
                 .OrderBy(x => x.TenantName)
                 .ToListAsync();
 
@@ -117,8 +117,8 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
             var currentUser = User.GetUserIdFromUser();
             service.StopLinkingToTenant();
 
-            return gotoHome 
-                ? RedirectToAction(nameof(Index), "Home") 
+            return gotoHome
+                ? RedirectToAction(nameof(Index), "Home")
                 : RedirectToAction(nameof(Index), new { message = "Finished linking to tenant's data" });
         }
 

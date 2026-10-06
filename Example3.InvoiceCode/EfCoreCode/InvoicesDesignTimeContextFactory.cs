@@ -7,20 +7,20 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace Example3.InvoiceCode.EfCoreCode
 {
-    public class InvoicesDesignTimeContextFactory : IDesignTimeDbContextFactory<InvoicesDbContext>          
+    public class InvoicesDesignTimeContextFactory : IDesignTimeDbContextFactory<InvoicesDbContext>
     {
         // This connection links to an invalidate database, but that's OK as I only used the Add-Migration command
         private const string connectionString =
             "Server=(localdb)\\mssqllocaldb;Database=AuthPermissions;Trusted_Connection=True;MultipleActiveResultSets=true";
 
-        public InvoicesDbContext CreateDbContext(string[] args)   
+        public InvoicesDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder =                              
-                new DbContextOptionsBuilder<InvoicesDbContext>(); 
+            var optionsBuilder =
+                new DbContextOptionsBuilder<InvoicesDbContext>();
             optionsBuilder.UseSqlServer(connectionString, dbOptions =>
-                dbOptions.MigrationsHistoryTable(StartupExtensions.InvoicesDbContextHistoryName));    
+                dbOptions.MigrationsHistoryTable(StartupExtensions.InvoicesDbContextHistoryName));
 
-            return new InvoicesDbContext(optionsBuilder.Options, null); 
+            return new InvoicesDbContext(optionsBuilder.Options, null);
         }
     }
     /******************************************************************************

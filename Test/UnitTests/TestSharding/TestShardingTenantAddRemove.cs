@@ -114,7 +114,7 @@ public class TestShardingOnlyTenantAddRemove
         var dto = new ShardingOnlyTenantAddDto
         {
             TenantName = "Test",
- 
+
             ConnectionStringName = "DefaultConnection",
             DbProviderShortName = "SqlServer",
         };

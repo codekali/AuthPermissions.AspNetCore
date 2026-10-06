@@ -17,6 +17,6 @@ namespace AuthPermissions.Factories
         /// <param name="throwExceptionIfNull">If no service found and this is true, then throw an exception</param>
         /// <param name="callingMethod">This contains the name of the calling method</param>
         /// <returns></returns>
-        TServiceInterface GetService(bool throwExceptionIfNull = true, [CallerMemberName] string callingMethod = "" );
+        TServiceInterface GetService(bool throwExceptionIfNull = true, [CallerMemberName] string callingMethod = "");
     }
 }

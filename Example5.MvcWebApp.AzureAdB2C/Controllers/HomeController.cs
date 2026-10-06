@@ -1,14 +1,14 @@
-﻿using Example5.MvcWebApp.AzureAdB2C.Models;
+﻿using AuthPermissions.BaseCode.CommonCode;
+using AuthPermissions.BaseCode.PermissionsCode;
+using AuthPermissions.SupportCode.AddUsersServices;
+using Example5.MvcWebApp.AzureAdB2C.Models;
+using Example5.MvcWebApp.AzureAdB2C.PermissionCode;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using AuthPermissions.BaseCode.CommonCode;
-using AuthPermissions.BaseCode.PermissionsCode;
-using AuthPermissions.SupportCode.AddUsersServices;
-using Example5.MvcWebApp.AzureAdB2C.PermissionCode;
 
 namespace Example5.MvcWebApp.AzureAdB2C.Controllers
 {

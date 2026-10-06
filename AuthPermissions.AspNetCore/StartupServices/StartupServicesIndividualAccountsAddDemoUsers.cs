@@ -27,7 +27,7 @@ namespace AuthPermissions.AspNetCore.StartupServices
         /// <param name="scopedServices">This should be a scoped service</param>
         /// <returns></returns>
         public async ValueTask ApplyYourChangeAsync(IServiceProvider scopedServices)
-        {     
+        {
             var userManager = scopedServices.GetRequiredService<UserManager<IdentityUser>>();
             var config = scopedServices.GetRequiredService<IConfiguration>();
             var demoUsers = config["DemoUsers"];
@@ -40,7 +40,7 @@ namespace AuthPermissions.AspNetCore.StartupServices
                     await userManager.CheckAddNewUserAsync(userEmail, userEmail);
                 }
             }
-            
+
         }
     }
 }

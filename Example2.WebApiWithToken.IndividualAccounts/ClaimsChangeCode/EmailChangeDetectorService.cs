@@ -29,7 +29,7 @@ public class EmailChangeDetectorService : IDatabaseStateChangeEvent
     /// <param name="context"></param>
     public void RegisterEventHandlers(AuthPermissionsDbContext context)
     {
-        context.ChangeTracker.StateChanged += delegate(object sender, EntityStateChangedEventArgs e)
+        context.ChangeTracker.StateChanged += delegate (object sender, EntityStateChangedEventArgs e)
         {
             if (e.Entry.Entity is AuthUser user
                 && e.NewState == EntityState.Modified

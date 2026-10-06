@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using AuthPermissions.BaseCode;
-using Example1.RazorPages.IndividualAccounts.Model;
+﻿using Example1.RazorPages.IndividualAccounts.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Localization;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Example1.RazorPages.IndividualAccounts.Pages
 {
@@ -19,10 +16,10 @@ namespace Example1.RazorPages.IndividualAccounts.Pages
             _userManager = userManager;
         }
 
-        [ModelBinder] 
+        [ModelBinder]
         public AppSummary AppSummary { get; } = new AppSummary();
 
-        [ModelBinder] 
+        [ModelBinder]
         public List<IdentityUser> Users { get; private set; }
 
         public void OnGet()

@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
 using ExamplesCommonCode.CommonAdmin;
 using GenericServices.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace Example1.RazorPages.IndividualAccounts.Pages.AuthRoles
 {
@@ -29,7 +29,7 @@ namespace Example1.RazorPages.IndividualAccounts.Pages.AuthRoles
             var status = await _authRolesAdmin
                 .CreateRoleToPermissionsAsync(Data.RoleName, Data.GetSelectedPermissionNames(), Data.Description);
 
-            if (status.IsValid) 
+            if (status.IsValid)
                 return RedirectToPage("ListRoles", new { message = status.Message });
 
             //Errors 

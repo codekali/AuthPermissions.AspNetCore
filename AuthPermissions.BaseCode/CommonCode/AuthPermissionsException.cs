@@ -14,6 +14,6 @@ namespace AuthPermissions.BaseCode.CommonCode
         /// <param name="message"></param>
         public AuthPermissionsException(string message)
             : base(message)
-        {}
+        { }
     }
 }

@@ -3,9 +3,9 @@
 
 namespace AuthPermissions.AspNetCore.JwtTokenCode
 {
-     /// <summary>
-     /// Interfaces of the JTW Token builder and the refresh token
-     /// </summary>
+    /// <summary>
+    /// Interfaces of the JTW Token builder and the refresh token
+    /// </summary>
     public interface ITokenBuilder
     {
         /// <summary>

@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AuthPermissions.AdminCode;
+﻿using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore;
-using AuthPermissions.BaseCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.SetupCode;
 using AuthPermissions.SupportCode.AddUsersServices;
 using Example5.MvcWebApp.AzureAdB2C.Models;
 using Example5.MvcWebApp.AzureAdB2C.PermissionCode;
 using ExamplesCommonCode.CommonAdmin;
-using LocalizeMessagesAndErrors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example5.MvcWebApp.AzureAdB2C.Controllers
 {
@@ -85,8 +83,8 @@ namespace Example5.MvcWebApp.AzureAdB2C.Controllers
         [HasPermission(Example5Permissions.UserChange)]
         public async Task<ActionResult> Edit(string userId)
         {
-            var status = await SetupManualUserChange.PrepareForUpdateAsync(userId,_authUsersAdmin);
-            if(status.HasErrors)
+            var status = await SetupManualUserChange.PrepareForUpdateAsync(userId, _authUsersAdmin);
+            if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });
 
@@ -122,7 +120,7 @@ namespace Example5.MvcWebApp.AzureAdB2C.Controllers
                             new { errorMessage = status.GetAllErrors() });
                     return View(nameof(Edit), status.Result);
                 case SyncAuthUserChangeTypes.Delete:
-                    return RedirectToAction(nameof(Delete), new { userId = input.UserId});
+                    return RedirectToAction(nameof(Delete), new { userId = input.UserId });
             }
 
             throw new ArgumentOutOfRangeException();
@@ -130,13 +128,13 @@ namespace Example5.MvcWebApp.AzureAdB2C.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateUpdate([FromServices] IAuthPDefaultLocalizer localizeProvider, 
+        public async Task<ActionResult> CreateUpdate([FromServices] IAuthPDefaultLocalizer localizeProvider,
             SetupManualUserChange input)
         {
             if (!ModelState.IsValid)
             {
                 await input.SetupDropDownListsAsync(_authUsersAdmin);//refresh dropdown
-                return View(input.FoundChangeType.ToString(),  input.FoundChangeType);
+                return View(input.FoundChangeType.ToString(), input.FoundChangeType);
             }
 
             var status = await input.ChangeAuthUserFromDataAsync(_authUsersAdmin, localizeProvider);
@@ -144,7 +142,7 @@ namespace Example5.MvcWebApp.AzureAdB2C.Controllers
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });
 
-            return RedirectToAction(nameof(Index), new {message = status.Message});
+            return RedirectToAction(nameof(Index), new { message = status.Message });
         }
 
 
@@ -155,14 +153,14 @@ namespace Example5.MvcWebApp.AzureAdB2C.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]        
+        [ValidateAntiForgeryToken]
         //NOTE: the input be called "data" because we are using JavaScript to send that info back
         public async Task<ActionResult> SyncUsers(IEnumerable<SyncAuthUserWithChange> data)
         {
             var status = await _authUsersAdmin.ApplySyncChangesAsync(data);
             if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
-                    new { errorMessage = status.GetAllErrors()});
+                    new { errorMessage = status.GetAllErrors() });
 
             return RedirectToAction(nameof(Index), new { message = status.Message });
         }
@@ -195,7 +193,7 @@ namespace Example5.MvcWebApp.AzureAdB2C.Controllers
 
         public ActionResult ErrorDisplay(string errorMessage)
         {
-            return View((object) errorMessage);
+            return View((object)errorMessage);
         }
     }
 }

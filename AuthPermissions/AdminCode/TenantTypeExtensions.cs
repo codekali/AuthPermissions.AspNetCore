@@ -21,7 +21,7 @@ public static class TenantTypeExtensions
     {
         if (tenantType.HasFlag(TenantTypes.SingleLevel) && tenantType.HasFlag(TenantTypes.HierarchicalTenant))
             throw new AuthPermissionsException(
-                $"The {nameof(AuthPermissionsOptions.TenantType)} option can't have {nameof(TenantTypes.SingleLevel)} and "+
+                $"The {nameof(AuthPermissionsOptions.TenantType)} option can't have {nameof(TenantTypes.SingleLevel)} and " +
                 $"{nameof(TenantTypes.HierarchicalTenant)} at the same time.");
 
         if (!tenantType.IsMultiTenant() && tenantType.HasFlag(TenantTypes.AddSharding))

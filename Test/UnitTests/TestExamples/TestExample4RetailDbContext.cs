@@ -3,11 +3,8 @@
 
 using Example4.ShopCode.EfCoreClasses;
 using Example4.ShopCode.EfCoreCode;
-using Microsoft.EntityFrameworkCore;
 using Test.StubClasses;
-using TestSupport.Attributes;
 using TestSupport.EfHelpers;
-using TestSupport.Helpers;
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;

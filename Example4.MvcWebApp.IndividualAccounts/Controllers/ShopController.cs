@@ -1,9 +1,6 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using AuthPermissions.AspNetCore;
 using Example4.MvcWebApp.IndividualAccounts.PermissionsCode;
 using Example4.ShopCode.Dtos;
@@ -11,6 +8,9 @@ using Example4.ShopCode.EfCoreClasses;
 using GenericServices;
 using GenericServices.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Example4.MvcWebApp.IndividualAccounts.Controllers
 {

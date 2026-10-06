@@ -62,7 +62,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             await context.BulkLoadHierarchicalTenantInDbAsync();
             context.ChangeTracker.Clear();
 
-            var service = new AuthTenantAdminService(context, _authOptionsHierarchical, 
+            var service = new AuthTenantAdminService(context, _authOptionsHierarchical,
                 "en".SetupAuthPLoggingLocalizer(), null, null);
 
             //ATTEMPT
@@ -440,9 +440,9 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
                 subTenantChangeService.MoveReturnedTuples
                     .ShouldEqual(new List<(string oldDataKey, string newDataKey, int tenantId, string newFullTenantName)>
                 {
-                    ("1.3.", "3.", 3, "East Coast"), 
-                    ("1.3.5.", "3.5.", 5, "East Coast | New York"), 
-                    ("1.3.5.8.", "3.5.8.", 8, "East Coast | New York | Shop3"), 
+                    ("1.3.", "3.", 3, "East Coast"),
+                    ("1.3.5.", "3.5.", 5, "East Coast | New York"),
+                    ("1.3.5.8.", "3.5.8.", 8, "East Coast | New York | Shop3"),
                     ("1.3.5.9.", "3.5.9.", 9, "East Coast | New York | Shop4")
                 });
             }
@@ -599,9 +599,9 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
                 var deleteLogs = ((StubTenantChangeServiceFactory.StubITenantChangeService)status.Result).DeleteReturnedTuples;
                 deleteLogs.ShouldEqual(new List<(string fullTenantName, string dataKey)>
                 {
-                    ("Company | West Coast | SanFran | Shop1", "1.2.4.6."), 
-                    ("Company | West Coast | SanFran | Shop2", "1.2.4.7."), 
-                    ("Company | West Coast | SanFran", "1.2.4."), 
+                    ("Company | West Coast | SanFran | Shop1", "1.2.4.6."),
+                    ("Company | West Coast | SanFran | Shop2", "1.2.4.7."),
+                    ("Company | West Coast | SanFran", "1.2.4."),
                     ("Company | West Coast", "1.2.")
                 });
             }
@@ -633,7 +633,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
 
             await context.BulkLoadHierarchicalTenantInDbAsync();
             var tenantToDelete = context.Find<Tenant>(7);
-            context.Add(AuthPSetupHelpers.CreateTestAuthUserOk("123", "me@gmail.com", "Mr Me", 
+            context.Add(AuthPSetupHelpers.CreateTestAuthUserOk("123", "me@gmail.com", "Mr Me",
                 new List<RoleToPermissions>(), tenantToDelete));
             context.SaveChanges();
             context.ChangeTracker.Clear();

@@ -160,7 +160,7 @@ public class TestSetRemoveStatusService
         //VERIFY
         var cacheEntries = removeService.GetAllDownKeyValues();
         cacheEntries.Count.ShouldEqual(2);
-        cacheEntries.Select(x => x.Value).ShouldEqual(new []{"1.2.", "1."});
+        cacheEntries.Select(x => x.Value).ShouldEqual(new[] { "1.2.", "1." });
     }
 
     [Theory]
@@ -183,6 +183,6 @@ public class TestSetRemoveStatusService
         var downCacheEntry = removeService.GetAllDownKeyValues().Single();
         downCacheEntry.Key.ShouldStartWith(RedirectUsersViaStatusData.DivertTenantPrefix + TenantDownVersions.Update);
 
-        downCacheEntry.Value.ShouldEqual(hasOwnDb ? "DatabaseInfoName|NoQueryFilter" :  "DatabaseInfoName|1.");
+        downCacheEntry.Value.ShouldEqual(hasOwnDb ? "DatabaseInfoName|NoQueryFilter" : "DatabaseInfoName|1.");
     }
 }

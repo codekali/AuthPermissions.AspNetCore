@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using AuthPermissions.BaseCode.CommonCode;
 using StatusGeneric;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Example4.ShopCode.EfCoreClasses
 {
@@ -15,7 +15,7 @@ namespace Example4.ShopCode.EfCoreClasses
         private ShopSale(int numSoldReturned, string returnReason, ShopStock foundStock)
         {
             if (numSoldReturned == 0) throw new ArgumentException("cannot be zero", nameof(numSoldReturned));
-            if (numSoldReturned < 0 && returnReason == null) 
+            if (numSoldReturned < 0 && returnReason == null)
                 throw new ArgumentException("cannot be null if its a return", nameof(returnReason));
 
             NumSoldReturned = numSoldReturned;
@@ -62,7 +62,7 @@ namespace Example4.ShopCode.EfCoreClasses
         public static IStatusGeneric<ShopSale> CreateSellAndUpdateStock(int numBought, ShopStock foundStock, string stockName)
         {
             if (numBought < 0) throw new ArgumentException("must be positive", nameof(numBought));
-            var status = new StatusGenericHandler<ShopSale> {Message = $"Successfully bought a {(foundStock?.StockName ?? stockName)}"};
+            var status = new StatusGenericHandler<ShopSale> { Message = $"Successfully bought a {(foundStock?.StockName ?? stockName)}" };
 
             if (foundStock == null)
                 return status.AddError($"Could not find any stock of: {stockName}.");

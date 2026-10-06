@@ -13,7 +13,7 @@ namespace AuthPermissions.BaseCode.CommonCode
         /// </summary>
         /// <param name="message"></param>
         public AuthPermissionsBadDataException(string message)
-            : base(message) {}
+            : base(message) { }
 
         /// <summary>
         /// Message and parameter name

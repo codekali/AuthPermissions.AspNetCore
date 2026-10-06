@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using AuthPermissions.AdminCode;
+﻿using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode.CommonCode;
 using ExamplesCommonCode.CommonAdmin;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Example5.MvcWebApp.AzureAdB2C.Controllers
 {
@@ -13,7 +13,7 @@ namespace Example5.MvcWebApp.AzureAdB2C.Controllers
             return View(User);
         }
 
-        public async Task<IActionResult> AuthUserInfo([FromServices]IAuthUsersAdminService service)
+        public async Task<IActionResult> AuthUserInfo([FromServices] IAuthUsersAdminService service)
         {
             if (User.Identity?.IsAuthenticated == true)
             {

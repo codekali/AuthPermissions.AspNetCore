@@ -17,7 +17,7 @@ public class StubGetSetShardingEntries : IGetSetShardingEntries
         PossibleDatabaseProviders = new string[]
         {
             "SqlServer",
-            "PostgreSQL", 
+            "PostgreSQL",
             "SqliteInMemory"
         };
 

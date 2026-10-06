@@ -1,6 +1,6 @@
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Example1.RazorPages.IndividualAccounts.Pages.AuthRoles
 {

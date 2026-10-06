@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Security.Claims;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.SetupCode;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Net.DistributedFileStoreCache;
+using System.Security.Claims;
 
 namespace AuthPermissions.SupportCode.DownStatusCode;
 

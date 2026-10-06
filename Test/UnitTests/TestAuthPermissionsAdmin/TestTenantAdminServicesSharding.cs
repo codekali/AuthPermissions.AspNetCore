@@ -56,10 +56,10 @@ public class TestTenantAdminServicesSharding
         var tenantChange = new StubTenantChangeServiceFactory();
         var service = new AuthTenantAdminService(context,
             _authOptionsSingleSharding, "en".SetupAuthPLoggingLocalizer(),
-            tenantChange,  null);
+            tenantChange, null);
 
         //ATTEMPT
-        var status = await service.AddSingleTenantAsync("Tenant4", null, true,"MyConnectionName");
+        var status = await service.AddSingleTenantAsync("Tenant4", null, true, "MyConnectionName");
 
         //VERIFY
         status.IsValid.ShouldBeTrue(status.GetAllErrors());
@@ -216,7 +216,7 @@ public class TestTenantAdminServicesSharding
             tenantChange, null);
 
         //ATTEMPT
-        var status = await service.AddHierarchicalTenantAsync("New Child", tenantIds[1], null, 
+        var status = await service.AddHierarchicalTenantAsync("New Child", tenantIds[1], null,
             true, "DiffConnectionName");
 
         //VERIFY

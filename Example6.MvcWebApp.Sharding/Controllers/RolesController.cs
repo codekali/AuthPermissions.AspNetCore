@@ -26,7 +26,7 @@ namespace Example6.MvcWebApp.Sharding.Controllers
             var userId = User.GetUserIdFromUser();
             var permissionDisplay = await
                 _authRolesAdmin.QueryRoleToPermissions(userId)
-                    .OrderBy(x => x.RoleType)  
+                    .OrderBy(x => x.RoleType)
                     .ToListAsync();
 
             ViewBag.Message = message;
@@ -49,7 +49,7 @@ namespace Example6.MvcWebApp.Sharding.Controllers
             var role = await
                 _authRolesAdmin.QueryRoleToPermissions(userId).SingleOrDefaultAsync(x => x.RoleName == roleName);
             var permissionsDisplay = _authRolesAdmin.GetPermissionDisplay(false);
-            return View(role == null ? null : RoleCreateUpdateDto.SetupForCreateUpdate(role.RoleName, role.Description, 
+            return View(role == null ? null : RoleCreateUpdateDto.SetupForCreateUpdate(role.RoleName, role.Description,
                 role.PermissionNames, permissionsDisplay, role.RoleType));
         }
 
@@ -108,7 +108,7 @@ namespace Example6.MvcWebApp.Sharding.Controllers
         public async Task<IActionResult> Delete(RoleDeleteConfirmDto input)
         {
             var status = await _authRolesAdmin.DeleteRoleAsync(input.RoleName, input.ConfirmDelete?.Trim() == input.RoleName);
-                
+
             if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });

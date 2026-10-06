@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using AuthPermissions.BaseCode.DataLayer.Classes;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace ExamplesCommonCode.CommonAdmin
 {

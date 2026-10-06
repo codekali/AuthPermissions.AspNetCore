@@ -18,7 +18,7 @@ namespace Test.UnitTests.TestEfCoreCodeSqlServer
         public void TestSaveChangesWithUniqueCheckNoError()
         {
             //SETUP
-            var options = this.CreateUniqueClassOptions<AuthPermissionsDbContext>(builder => 
+            var options = this.CreateUniqueClassOptions<AuthPermissionsDbContext>(builder =>
                 builder.UseExceptionProcessor());
             using var context = new AuthPermissionsDbContext(options);
             context.Database.EnsureClean();

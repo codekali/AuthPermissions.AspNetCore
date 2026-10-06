@@ -9,7 +9,7 @@ namespace Example7.MvcWebApp.ShardingOnly.Models
         public string AuthorizationProvider { get; } = "ASP.NET Core's individual users account";
         public string CookieOrToken { get; } = "Cookie";
         public string MultiTenant { get; } = "single level multi-tenant using a hybrid sharding";
-        public string[] Databases { get; } = new []
+        public string[] Databases { get; } = new[]
         {
             "A database used by AuthP, but can also used to hold tenants.",
             "There are four demo servers: Default, West, Center, and East",

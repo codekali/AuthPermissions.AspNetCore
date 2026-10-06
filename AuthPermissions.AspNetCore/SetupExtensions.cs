@@ -147,7 +147,7 @@ namespace AuthPermissions.AspNetCore
         /// If you want store tenants in the AuthP database, or change any other data, then provide a instance of the
         /// <see cref="ShardingEntryOptions"/> with the ctor hybridMode parameter set to true.</param>
         /// <returns></returns>
-        public static AuthSetupData SetupMultiTenantSharding(this AuthSetupData setupData, 
+        public static AuthSetupData SetupMultiTenantSharding(this AuthSetupData setupData,
             ShardingEntryOptions defaultShardingEntry = null)
         {
             if (!setupData.Options.TenantType.IsMultiTenant())
@@ -160,27 +160,27 @@ namespace AuthPermissions.AspNetCore
                 throw new AuthPermissionsException(
                     $"You must set the {nameof(AuthPermissionsOptions.Configuration)} to the ASP.NET Core Configuration when using Sharding");
 
-#region AuthP version 6 changes
+            #region AuthP version 6 changes
             //This defines the default sharding entry to use when there are no entries
             //This defaults to not using the AuthP database to hold tenants
             //You need to supply a ShardingEntryOptions with the HybridMode as true
             //if you want store tenants in the AuthP database
             defaultShardingEntry ??= new ShardingEntryOptions(false);
             setupData.Services.AddSingleton(defaultShardingEntry);
-#endregion
+            #endregion
 
             //This gets access to the ConnectionStrings
             setupData.Services.Configure<ConnectionStringsOption>(setupData.Options.Configuration.GetSection("ConnectionStrings"));
             setupData.Services.AddTransient<ILinkToTenantDataService, LinkToTenantDataService>();
 
-#region AuthP version 6 changes
+            #region AuthP version 6 changes
             //This changed in version 6 of the AuthP library
             //The GetSetShardingEntriesFileStoreCache handles reading back an ShardingEntry that was undated during the same HTTP request
             //This change is because IOptionsMonitor service won't get a change to the json file until an new HTTP request has happened 
             setupData.Services.AddTransient<IGetSetShardingEntries, GetSetShardingEntriesFileStoreCache>();
             //New version service that makes it easier to create / delete tenants when using sharding
             setupData.Services.AddTransient<IShardingOnlyTenantAddRemove, ShardingOnlyTenantAddRemove>();
-#endregion
+            #endregion
 
             switch (setupData.Options.LinkToTenantType)
             {

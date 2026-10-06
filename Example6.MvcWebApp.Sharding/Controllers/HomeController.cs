@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using Example6.MvcWebApp.Sharding.Models;
 using Example6.SingleLevelSharding.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Example6.MvcWebApp.Sharding.Controllers
 {

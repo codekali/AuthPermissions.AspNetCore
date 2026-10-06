@@ -34,8 +34,8 @@ namespace Example6.MvcWebApp.Sharding.Controllers
 
         public async Task<ActionResult> Edit(string userId)
         {
-            var status = await SetupManualUserChange.PrepareForUpdateAsync(userId,_authUsersAdmin);
-            if(status.HasErrors)
+            var status = await SetupManualUserChange.PrepareForUpdateAsync(userId, _authUsersAdmin);
+            if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });
 
@@ -63,14 +63,14 @@ namespace Example6.MvcWebApp.Sharding.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]        
+        [ValidateAntiForgeryToken]
         //NOTE: the input be called "data" because we are using JavaScript to send that info back
         public async Task<ActionResult> SyncUsers(IEnumerable<SyncAuthUserWithChange> data)
         {
             var status = await _authUsersAdmin.ApplySyncChangesAsync(data);
             if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
-                    new { errorMessage = status.GetAllErrors()});
+                    new { errorMessage = status.GetAllErrors() });
 
             return RedirectToAction(nameof(Index), new { message = status.Message });
         }
@@ -101,7 +101,7 @@ namespace Example6.MvcWebApp.Sharding.Controllers
 
         public ActionResult ErrorDisplay(string errorMessage)
         {
-            return View((object) errorMessage);
+            return View((object)errorMessage);
         }
     }
 }

@@ -73,8 +73,8 @@ namespace AuthPermissions.BulkLoadServices.Concrete
             var status = new StatusGenericHandler();
 
             var rolesToPermissions = new List<RoleToPermissions>();
-            userDefine.RoleNamesCommaDelimited.DecodeCommaDelimitedNameWithCheck(0, 
-                (name, startOfName) => 
+            userDefine.RoleNamesCommaDelimited.DecodeCommaDelimitedNameWithCheck(0,
+                (name, startOfName) =>
                 {
                     var roleToPermission = _context.RoleToPermissions.SingleOrDefault(x => x.RoleName == name);
                     if (roleToPermission == null)
@@ -97,7 +97,7 @@ namespace AuthPermissions.BulkLoadServices.Concrete
             if (userId == null && findUserInfoService != null)
             {
                 var userInfo = await findUserInfoService.FindUserInfoAsync(userDefine.UniqueUserName);
-                userId =  userInfo?.UserId;
+                userId = userInfo?.UserId;
                 if (userInfo?.UserName != null)
                     //we override the AuthUser username
                     userName = userInfo.UserName;
@@ -116,7 +116,7 @@ namespace AuthPermissions.BulkLoadServices.Concrete
                         $"The user {userName} has a tenant name of {userDefine.TenantNameForDataKey} which wasn't found in the auth database."));
             }
 
-            var authUserStatus = AuthUser.CreateAuthUser(userId, userDefine.Email, userName, rolesToPermissions, 
+            var authUserStatus = AuthUser.CreateAuthUser(userId, userDefine.Email, userName, rolesToPermissions,
                 new StubDefaultLocalizer(), userTenant);
             if (status.CombineStatuses(authUserStatus).HasErrors)
                 return status;

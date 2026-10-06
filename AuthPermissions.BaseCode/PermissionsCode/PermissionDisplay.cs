@@ -17,7 +17,7 @@ namespace AuthPermissions.BaseCode.PermissionsCode
         {
             PermissionName = permissionName;
             GroupName = groupName ?? throw new ArgumentNullException(nameof(groupName));
-            ShortName = name  ?? "<none>";
+            ShortName = name ?? "<none>";
             Description = description ?? "<none>";
         }
 
@@ -60,7 +60,7 @@ namespace AuthPermissions.BaseCode.PermissionsCode
         /// <param name="enumType">type of the enum permissions</param>
         /// <param name="excludeFilteredPermissions">if trie then it won't show permissions where the AutoGenerateFilter is true</param>
         /// <returns>a list of PermissionDisplay classes containing the data</returns>
-        public static List<PermissionDisplay> GetPermissionsToDisplay(Type enumType, bool excludeFilteredPermissions) 
+        public static List<PermissionDisplay> GetPermissionsToDisplay(Type enumType, bool excludeFilteredPermissions)
         {
             var result = new List<PermissionDisplay>();
             foreach (var permissionName in Enum.GetNames(enumType))

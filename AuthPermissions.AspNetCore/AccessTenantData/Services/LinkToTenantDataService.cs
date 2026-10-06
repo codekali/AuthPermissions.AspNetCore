@@ -34,7 +34,7 @@ public class LinkToTenantDataService : ILinkToTenantDataService
     /// <param name="cookieAccessor"></param>
     /// <param name="encryptorService"></param>
     /// <param name="localizeProvider"></param>
-    public LinkToTenantDataService( 
+    public LinkToTenantDataService(
         AuthPermissionsDbContext context,
         AuthPermissionsOptions options,
         IAccessTenantDataCookie cookieAccessor,
@@ -76,7 +76,7 @@ public class LinkToTenantDataService : ILinkToTenantDataService
 
         var tenantToLinkTo = await _context.Tenants.SingleOrDefaultAsync(x => x.TenantId == tenantId);
         if (tenantToLinkTo == null)
-            return status.AddErrorString("TenantNotFound".ClassLocalizeKey(this, true), 
+            return status.AddErrorString("TenantNotFound".ClassLocalizeKey(this, true),
                 "Could not find the tenant you were looking for.");
 
         if (status.HasErrors)
@@ -84,7 +84,7 @@ public class LinkToTenantDataService : ILinkToTenantDataService
 
         _cookieAccessor.AddOrUpdateCookie(EncodeCookieContent(tenantToLinkTo), _options.NumMinutesBeforeCookieTimesOut);
 
-        status.SetMessageFormatted("Success".ClassLocalizeKey(this, true), 
+        status.SetMessageFormatted("Success".ClassLocalizeKey(this, true),
             $"You are now linked the the data of the tenant called '{tenantToLinkTo.TenantFullName}'");
         return status;
     }
@@ -159,7 +159,7 @@ public class LinkToTenantDataService : ILinkToTenantDataService
         return _encryptorService.Encrypt(values);
     }
 
-    private  (string dataKey, string tenantName, string connectionName) DecodeCookieContent(string cookieValue)
+    private (string dataKey, string tenantName, string connectionName) DecodeCookieContent(string cookieValue)
     {
         string values;
         try
@@ -180,9 +180,9 @@ public class LinkToTenantDataService : ILinkToTenantDataService
             return (values.Substring(0, firstComma), values.Substring(firstComma + 1), null);
 
         //with sharding (order is DataKey, ConnectionName, Tenant name - this overcomes the problem of commas in the tenant name
-        var secondComma = values.Substring(firstComma + 1).IndexOf(',')+ firstComma + 1;
+        var secondComma = values.Substring(firstComma + 1).IndexOf(',') + firstComma + 1;
         return (values.Substring(0, firstComma),
             values.Substring(secondComma + 1),
-            values.Substring(firstComma + 1, secondComma - firstComma - 1 ));
+            values.Substring(firstComma + 1, secondComma - firstComma - 1));
     }
 }

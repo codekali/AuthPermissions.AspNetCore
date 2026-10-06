@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
 using AuthPermissions.AspNetCore.GetDataKeyCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.EfCode;
 using Example4.ShopCode.EfCoreClasses;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Example4.ShopCode.EfCoreCode
 {
@@ -19,7 +19,7 @@ namespace Example4.ShopCode.EfCoreCode
         {
             // The DataKey is null when: no one is logged in, its a background service, or user hasn't got an assigned tenant
             // In these cases its best to set the data key that doesn't match any possible DataKey 
-            DataKey = dataKeyFilter?.DataKey ?? "stop any user without a DataKey to access the data"; 
+            DataKey = dataKeyFilter?.DataKey ?? "stop any user without a DataKey to access the data";
         }
 
         public DbSet<RetailOutlet> RetailOutlets { get; set; }

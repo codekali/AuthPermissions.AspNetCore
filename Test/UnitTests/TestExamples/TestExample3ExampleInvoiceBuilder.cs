@@ -43,7 +43,7 @@ namespace Test.UnitTests.TestExamples
             var invoice = builder.CreateRandomInvoice("Company");
 
             //VERIFY
-            invoice.LineItems.Count.ShouldBeInRange(3,7);
+            invoice.LineItems.Count.ShouldBeInRange(3, 7);
         }
     }
 }

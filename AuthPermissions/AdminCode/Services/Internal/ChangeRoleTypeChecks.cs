@@ -22,7 +22,7 @@ internal class ChangeRoleTypeChecks
         _context = context;
     }
 
-    public async Task<IStatusGeneric> CheckRoleTypeChangeAsync(RoleTypes originalRoleType, 
+    public async Task<IStatusGeneric> CheckRoleTypeChangeAsync(RoleTypes originalRoleType,
         RoleTypes newRoleType, string roleName, IDefaultLocalizer localizeDefault)
     {
         var status = new StatusGenericLocalizer(localizeDefault);
@@ -68,7 +68,7 @@ internal class ChangeRoleTypeChecks
         var query = _context.AuthUsers.Where(x => x.UserRoles.Any(y => y.RoleName == roleName));
         if (filterOutNonTenantUsers)
             query = query.Where(x => x.TenantId != null);
-        
+
         var numBadUser = await query.CountAsync();
         return numBadUser > 0
             ? $"{numBadUser} users are linked to it."
@@ -79,7 +79,7 @@ internal class ChangeRoleTypeChecks
     {
         var numBadUser = await _context.RoleToPermissions.Where(x => x.RoleName == roleName)
             //.Select(x => x.Tenants.Select(y => y.TenantFullName))
-            .CountAsync() ;
+            .CountAsync();
         return numBadUser > 0
             ? $"{numBadUser} tenants are linked to it."
             : (FormattableString)null;

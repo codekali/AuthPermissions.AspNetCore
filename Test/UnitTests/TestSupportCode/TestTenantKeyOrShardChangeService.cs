@@ -23,7 +23,7 @@ public class TestTenantKeyOrShardChangeService
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
         var globalAccessor = new StubGlobalChangeTimeService();
         var service = new TenantKeyOrShardChangeService(globalAccessor);
-        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { service});
+        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { service });
 
         context.Database.EnsureCreated();
 
@@ -43,7 +43,7 @@ public class TestTenantKeyOrShardChangeService
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
         var globalAccessor = new StubGlobalChangeTimeService();
         var service = new TenantKeyOrShardChangeService(globalAccessor);
-        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { service});
+        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { service });
         context.Database.EnsureCreated();
 
         await context.BulkLoadHierarchicalTenantInDbAsync();
@@ -70,7 +70,7 @@ public class TestTenantKeyOrShardChangeService
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
         var globalAccessor = new StubGlobalChangeTimeService();
         var service = new TenantKeyOrShardChangeService(globalAccessor);
-        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { service});
+        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { service });
         context.Database.EnsureCreated();
 
         await context.SetupSingleShardingTenantsInDbAsync();

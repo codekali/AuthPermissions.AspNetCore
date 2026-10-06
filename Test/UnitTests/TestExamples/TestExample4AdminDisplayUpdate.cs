@@ -80,7 +80,7 @@ namespace Test.UnitTests.TestExamples
 
             //VERIFY
             cAnds.context.ChangeTracker.Clear();
-            cAnds.context.AuthUsers.Count().ShouldBeInRange(15,30);
+            cAnds.context.AuthUsers.Count().ShouldBeInRange(15, 30);
             cAnds.context.RoleToPermissions.Count().ShouldBeInRange(4, 15);
             cAnds.context.UserToRoles.Count().ShouldBeInRange(20, 40);
             cAnds.context.Tenants.Count().ShouldBeInRange(10, 30);
@@ -95,7 +95,7 @@ namespace Test.UnitTests.TestExamples
 
             //ATTEMPT
             var dataKey = "1.3."; // 4U Inc. | West Coast
-            var userQuery = cAnds.context.AuthUsers.Where(x => (x.UserTenant.ParentDataKey+x.TenantId).StartsWith(dataKey));
+            var userQuery = cAnds.context.AuthUsers.Where(x => (x.UserTenant.ParentDataKey + x.TenantId).StartsWith(dataKey));
             var usersToShow = userQuery.ToList();
             var allUsers = cAnds.context.AuthUsers.ToList();
 
@@ -162,13 +162,13 @@ namespace Test.UnitTests.TestExamples
 
             var adminUserService = cAnds.serviceProvider.GetRequiredService<IAuthUsersAdminService>();
             var userId = "admin@4uInc.com";
-            var dataKey = useDataKey 
+            var dataKey = useDataKey
                 ? (await adminUserService.FindAuthUserByUserIdAsync(userId)).Result.UserTenant.GetTenantDataKey()
                 : null;
 
             //ATTEMPT
             var results = adminUserService.QueryAuthUsers(dataKey).ToList()
-                .Select(x => new { x.Email, DataKey = x.UserTenant?.GetTenantDataKey() ?? "- admin user -"} ).ToList();
+                .Select(x => new { x.Email, DataKey = x.UserTenant?.GetTenantDataKey() ?? "- admin user -" }).ToList();
 
             //VERIFY
             foreach (var result in results)
@@ -198,7 +198,7 @@ namespace Test.UnitTests.TestExamples
             var results = adminUserService.QueryAuthUsers(dataKey, shardingKey).ToList()
                 .Select(x => new
                 {
-                    x.Email, 
+                    x.Email,
                     DataKey = x.UserTenant?.GetTenantDataKey(),
                     ShardingKey = x.UserTenant?.DatabaseInfoName
                 }).ToList();
@@ -222,7 +222,7 @@ namespace Test.UnitTests.TestExamples
             var authUserUpdate = (await SetupManualUserChange.PrepareForUpdateAsync(userId, adminUserService)).Result;
 
             //ATTEMPT
-            var status = await authUserUpdate.ChangeAuthUserFromDataAsync(adminUserService, 
+            var status = await authUserUpdate.ChangeAuthUserFromDataAsync(adminUserService,
                 "en".SetupAuthPLoggingLocalizer());
 
             //VERIFY
@@ -247,7 +247,7 @@ namespace Test.UnitTests.TestExamples
 
             //ATTEMPT
             authUserUpdate.FoundChangeType = SyncAuthUserChangeTypes.Update;
-            authUserUpdate.RoleNames = new List<string> {"Area Manager", "Tenant Admin" };
+            authUserUpdate.RoleNames = new List<string> { "Area Manager", "Tenant Admin" };
             var status = await authUserUpdate.ChangeAuthUserFromDataAsync(adminUserService,
                 "en".SetupAuthPLoggingLocalizer());
 

@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
+using AuthPermissions.BaseCode.CommonCode;
+using AuthPermissions.BaseCode.DataLayer.EfCode;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
-using System;
-using System.Linq;
-using AuthPermissions.BaseCode.CommonCode;
 using Microsoft.Extensions.DependencyInjection;
 using Net.DistributedFileStoreCache;
+using System;
+using System.Linq;
 using System.Security.Claims;
-using AuthPermissions.BaseCode.DataLayer.EfCode;
+using System.Threading.Tasks;
 
 namespace Example2.WebApiWithToken.IndividualAccounts.ClaimsChangeCode;
 
@@ -44,7 +44,7 @@ public static class AddEmailClaimMiddleware
                 //Not set up yet, so we need to get the user's email and place it in the cache
                 var context = serviceProvider.GetRequiredService<AuthPermissionsDbContext>();
                 usersEmail = context.AuthUsers.Where(x => x.UserId == userId).Select(x => x.Email).FirstOrDefault();
-                
+
                 if (usersEmail == null)
                     return null; //shouldn't happen, but could in certain updates
 
@@ -58,7 +58,7 @@ public static class AddEmailClaimMiddleware
             var appIdentity = new ClaimsIdentity(updateClaims, user.Identity!.AuthenticationType);
             return new ClaimsPrincipal(appIdentity);
         }
-        
+
         return null; //no change to the current user
     }
 }

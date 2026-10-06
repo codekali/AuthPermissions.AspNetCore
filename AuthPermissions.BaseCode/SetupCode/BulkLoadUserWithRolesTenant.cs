@@ -1,8 +1,8 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.ComponentModel.DataAnnotations;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
+using System.ComponentModel.DataAnnotations;
 
 namespace AuthPermissions.BaseCode.SetupCode;
 
@@ -64,7 +64,7 @@ public class BulkLoadUserWithRolesTenant
     /// <summary>
     /// List of role names in a comma delimited list
     /// </summary>
-    public string RoleNamesCommaDelimited { get;  }
+    public string RoleNamesCommaDelimited { get; }
 
     /// <summary>
     /// Useful when debugging

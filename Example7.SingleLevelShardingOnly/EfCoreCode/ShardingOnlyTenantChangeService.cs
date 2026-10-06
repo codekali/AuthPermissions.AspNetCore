@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Data;
 using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore.GetDataKeyCode;
 using AuthPermissions.AspNetCore.ShardingServices;
@@ -54,7 +53,7 @@ public class ShardingOnlyTenantChangeService : ITenantChangeService
             return $"There is no connection string with the name {tenant.DatabaseInfoName}.";
 
         var databaseError = await CheckDatabaseAndPossibleMigrate(context, tenant, true);
-        if (databaseError != null) 
+        if (databaseError != null)
             return databaseError;
 
         var newCompanyTenant = new CompanyTenant

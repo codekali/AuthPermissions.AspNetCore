@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.PermissionsCode;
 using ExamplesCommonCode.CommonAdmin;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Example4.MvcWebApp.IndividualAccounts.Controllers
 {
@@ -17,7 +17,7 @@ namespace Example4.MvcWebApp.IndividualAccounts.Controllers
             return View(User);
         }
 
-        public async Task<IActionResult> AuthUserInfo([FromServices]IAuthUsersAdminService service)
+        public async Task<IActionResult> AuthUserInfo([FromServices] IAuthUsersAdminService service)
         {
             if (User.Identity?.IsAuthenticated == true)
             {

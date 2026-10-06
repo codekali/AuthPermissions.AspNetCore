@@ -1,14 +1,14 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StatusGeneric;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example1.RazorPages.IndividualAccounts.Model
 {

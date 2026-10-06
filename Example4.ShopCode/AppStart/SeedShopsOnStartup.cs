@@ -1,15 +1,15 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode.CommonCode;
 using Example4.ShopCode.EfCoreClasses;
 using Example4.ShopCode.EfCoreCode;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example4.ShopCode.AppStart
 {
@@ -42,7 +42,7 @@ Kitten Place: Scratch pole|60, Play mouse|5, Cat food (small)|12";
         {
             var tenantsThatAreShops = await _authTenantAdmin.QueryEndLeafTenants().ToListAsync();
 
-            var retailLookup = tenantsThatAreShops.Select(x => 
+            var retailLookup = tenantsThatAreShops.Select(x =>
                     new RetailOutlet(x.TenantId, x.TenantFullName, x.GetTenantDataKey()))
                 .ToDictionary(x => x.ShortName);
 
@@ -66,8 +66,8 @@ Kitten Place: Scratch pole|60, Play mouse|5, Cat food (small)|12";
                     throw new AuthPermissionsException($"Could not find a shop of name '{shopName}'");
 
                 var eachStock = from stockAndPrice in line.Substring(colonIndex + 1).Split(',')
-                    let parts = stockAndPrice.Split('|').Select(x => x.Trim()).ToArray()
-                    select new { Name = parts[0], Price = decimal.Parse(parts[1]) };
+                                let parts = stockAndPrice.Split('|').Select(x => x.Trim()).ToArray()
+                                select new { Name = parts[0], Price = decimal.Parse(parts[1]) };
                 foreach (var stock in eachStock)
                 {
                     var newStock = new ShopStock(stock.Name, stock.Price, 5, shop);

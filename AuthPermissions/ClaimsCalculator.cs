@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Security.Claims;
 using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode;
 using AuthPermissions.BaseCode.CommonCode;
@@ -10,6 +9,7 @@ using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
 using AuthPermissions.BaseCode.DataLayer.EfCode;
 using AuthPermissions.BaseCode.PermissionsCode;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace AuthPermissions
 {
@@ -29,7 +29,7 @@ namespace AuthPermissions
         /// <param name="context"></param>
         /// <param name="options"></param>
         /// <param name="claimAdders"></param>
-        public ClaimsCalculator(AuthPermissionsDbContext context, 
+        public ClaimsCalculator(AuthPermissionsDbContext context,
             AuthPermissionsOptions options,
                 IEnumerable<IClaimsAdder> claimAdders)
         {
@@ -56,7 +56,7 @@ namespace AuthPermissions
                 return result;
 
             var permissions = await CalcPermissionsForUserAsync(userId);
-            if (permissions != null) 
+            if (permissions != null)
                 result.Add(new Claim(PermissionConstants.PackedPermissionClaimType, permissions));
 
             if (_options.TenantType.IsMultiTenant())

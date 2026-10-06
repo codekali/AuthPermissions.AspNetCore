@@ -31,7 +31,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.PermissionsCode
         [Obsolete]
         [Display(GroupName = "Employees", Description = "Can revoke or activate a tenant employee")]
         EmployeeRevokeActivate = 31,
-        
+
         [Display(GroupName = "Employees", Description = "Can invite new users to join the tenant")]
         InviteUsers = 32,
 
@@ -95,7 +95,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.PermissionsCode
         //Setting the AutoGenerateFilter to true in the display allows we can exclude this permissions
         //to admin users who aren't allowed alter this permissions
         //Useful for multi-tenant applications where you can set up company-level admin users where you can hide some higher-level permissions
-        [Display(GroupName = "SuperAdmin", Name = "AccessAll", 
+        [Display(GroupName = "SuperAdmin", Name = "AccessAll",
             Description = "This allows the user to access every feature", AutoGenerateFilter = true)]
         AccessAll = ushort.MaxValue,
     }

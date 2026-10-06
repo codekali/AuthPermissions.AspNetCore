@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode;
 using AuthPermissions.BaseCode.CommonCode;
@@ -15,6 +13,8 @@ using LocalizeMessagesAndErrors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StatusGeneric;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AuthPermissions.SupportCode.AddUsersServices;
 
@@ -58,20 +58,20 @@ public class InviteNewUserService : IInviteNewUserService
     public List<KeyValuePair<long, string>> ListOfExpirationTimes()
     {
         var result = new List<KeyValuePair<long, string>>();
-        result.Add(new(default, 
-            _localizeDefault.LocalizeStringMessage("Forever".ClassLocalizeKey(this, true), 
+        result.Add(new(default,
+            _localizeDefault.LocalizeStringMessage("Forever".ClassLocalizeKey(this, true),
             "Invite is valid forever.")));
         result.Add(new(DateTime.UtcNow.AddHours(1).Ticks,
-            _localizeDefault.LocalizeStringMessage("Expiration-1Hour".ClassLocalizeKey(this, true), 
+            _localizeDefault.LocalizeStringMessage("Expiration-1Hour".ClassLocalizeKey(this, true),
                 "Invite is only valid for 1 hour from now.")));
         result.Add(new(DateTime.UtcNow.AddHours(1).Ticks,
-            _localizeDefault.LocalizeFormattedMessage("Expiration-Hours".ClassLocalizeKey(this, true), 
+            _localizeDefault.LocalizeFormattedMessage("Expiration-Hours".ClassLocalizeKey(this, true),
                 $"Invite is only valid for {6} hours from now.")));
         result.Add(new(DateTime.UtcNow.AddHours(1).Ticks,
             _localizeDefault.LocalizeFormattedMessage("Expiration-Hours".ClassLocalizeKey(this, true),
                 $"Invite is only valid for {24} hours from now.")));
 
-        foreach (var numDays in new[]{3, 7, 20})
+        foreach (var numDays in new[] { 3, 7, 20 })
         {
             result.Add(new(DateTime.UtcNow.AddHours(1).Ticks,
                 _localizeDefault.LocalizeFormattedMessage("Expiration-Days".ClassLocalizeKey(this, true),
@@ -139,7 +139,7 @@ public class InviteNewUserService : IInviteNewUserService
                 }
 
                 if (invitedUser.TenantId == null)
-                    return status.AddErrorString("SelectTenant".ClassLocalizeKey(this, true), 
+                    return status.AddErrorString("SelectTenant".ClassLocalizeKey(this, true),
                         "You forgot to select a tenant for the invite.",
                         nameof(AddNewUserDto.TenantId));
             }
@@ -157,7 +157,7 @@ public class InviteNewUserService : IInviteNewUserService
                 {
                     //Check that the Roles for the invited user are acceptable for a tenant user
                     var badRoles = await _context.RoleToPermissions.Where(x =>
-                            invitedUser.Roles.Contains(x.RoleName) 
+                            invitedUser.Roles.Contains(x.RoleName)
                             && (x.RoleType == RoleTypes.HiddenFromTenant || x.RoleType == RoleTypes.TenantAutoAdd))
                         .Select(x => x.RoleName).ToListAsync();
                     if (badRoles.Any())
@@ -211,7 +211,7 @@ public class InviteNewUserService : IInviteNewUserService
             messages.Add($" This invite expires on local time {new DateTime(invitedUser.TimeInviteExpires).ToLocalTime():g}.");
         }
 
-        status.SetMessageFormatted(("Success-"+successEndingKey).ClassLocalizeKey(this, true), messages.ToArray());
+        status.SetMessageFormatted(("Success-" + successEndingKey).ClassLocalizeKey(this, true), messages.ToArray());
 
         //This setting makes the string shorter
         JsonSerializerOptions options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault };
@@ -237,7 +237,7 @@ public class InviteNewUserService : IInviteNewUserService
     /// <param name="isPersistent">If use are using a register / login authentication handler (e.g. individual user accounts)
     /// and you are using authentication cookie, then setting this to true makes the login persistent</param>
     /// <returns>Status with the data used to create the user</returns>
-    public async Task<IStatusGeneric<AddNewUserDto>> AddUserViaInvite(string inviteParam, 
+    public async Task<IStatusGeneric<AddNewUserDto>> AddUserViaInvite(string inviteParam,
     string email, string userName, string password = null, bool isPersistent = false)
     {
         var status = new StatusGenericLocalizer<AddNewUserDto>(_localizeDefault);
@@ -256,13 +256,13 @@ public class InviteNewUserService : IInviteNewUserService
                 "Sorry, the verification failed.");
         }
 
-        if (newUserData.Email!= normalizedEmail)
+        if (newUserData.Email != normalizedEmail)
             return status.AddErrorString("EmailNotMatch".ClassLocalizeKey(this, true),
                 "Sorry, your email didn't match the invite.",
                 nameof(AddNewUserDto.Email));
-        if (newUserData.TimeInviteExpires != default 
+        if (newUserData.TimeInviteExpires != default
             && newUserData.TimeInviteExpires < DateTime.UtcNow.Ticks)
-            return status.AddErrorString("InviteExpired".ClassLocalizeKey(this, true), 
+            return status.AddErrorString("InviteExpired".ClassLocalizeKey(this, true),
                 "The invite has expired. Please contact the person who sent you an invite.");
 
         newUserData.UserName = userName;

@@ -28,7 +28,7 @@ namespace Test.UnitTests.TestAuthPermissions
             context.AddOneUserWithRolesAndOptionalTenant();
             context.ChangeTracker.Clear();
 
-            var service = new ClaimsCalculator(context, new AuthPermissionsOptions{ TenantType =  TenantTypes.NotUsingTenants }, new List<IClaimsAdder>());
+            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.NotUsingTenants }, new List<IClaimsAdder>());
 
             //ATTEMPT
             var claims = await service.GetClaimsForAuthUserAsync("User1");
@@ -53,7 +53,7 @@ namespace Test.UnitTests.TestAuthPermissions
 
             context.ChangeTracker.Clear();
 
-            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.NotUsingTenants }, 
+            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.NotUsingTenants },
                 new List<IClaimsAdder> { new AddRefreshEveryMinuteClaim() });
 
             //ATTEMPT
@@ -75,17 +75,17 @@ namespace Test.UnitTests.TestAuthPermissions
             using var context = new AuthPermissionsDbContext(options);
             context.Database.EnsureCreated();
 
-            var rolePer1 = new RoleToPermissions("Role1", null, $"{(char) 1}{(char) 3}");
+            var rolePer1 = new RoleToPermissions("Role1", null, $"{(char)1}{(char)3}");
             var rolePer2 = new RoleToPermissions("Role2", null, $"{(char)2}{(char)3}");
             context.AddRange(rolePer1, rolePer2);
-            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null, 
+            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null,
                 new List<RoleToPermissions>() { rolePer1, rolePer2 });
             context.Add(user);
             context.SaveChanges();
 
             context.ChangeTracker.Clear();
 
-            var service = new ClaimsCalculator(context, new AuthPermissionsOptions{ TenantType =  TenantTypes.NotUsingTenants }, new List<IClaimsAdder>());
+            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.NotUsingTenants }, new List<IClaimsAdder>());
 
             //ATTEMPT
             var claims = await service.GetClaimsForAuthUserAsync("User1");
@@ -104,7 +104,7 @@ namespace Test.UnitTests.TestAuthPermissions
             using var context = new AuthPermissionsDbContext(options);
             context.Database.EnsureCreated();
 
-            var service = new ClaimsCalculator(context, new AuthPermissionsOptions{ TenantType =  TenantTypes.NotUsingTenants }, new List<IClaimsAdder>());
+            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.NotUsingTenants }, new List<IClaimsAdder>());
 
             //ATTEMPT
             var claims = await service.GetClaimsForAuthUserAsync("User1");
@@ -124,7 +124,7 @@ namespace Test.UnitTests.TestAuthPermissions
             var rolePer1 = new RoleToPermissions("Role1", null, $"{(char)1}{(char)3}");
             var rolePer2 = new RoleToPermissions("Role2", null, $"{(char)2}{(char)3}");
             context.AddRange(rolePer1, rolePer2);
-            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null, 
+            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null,
                 new List<RoleToPermissions>() { rolePer1 });
             user.UpdateIsDisabled(true);
             context.Add(user);

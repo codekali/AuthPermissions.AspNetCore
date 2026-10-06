@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using AuthPermissions.AspNetCore;
+﻿using AuthPermissions.AspNetCore;
 using AuthPermissions.BaseCode.PermissionsCode;
 using Example3.InvoiceCode.AppStart;
 using Example3.InvoiceCode.Dtos;
@@ -11,7 +6,10 @@ using Example3.InvoiceCode.EfCoreClasses;
 using Example3.InvoiceCode.EfCoreCode;
 using Example3.InvoiceCode.Services;
 using Example3.MvcWebApp.IndividualAccounts.PermissionsCode;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example3.MvcWebApp.IndividualAccounts.Controllers
 {

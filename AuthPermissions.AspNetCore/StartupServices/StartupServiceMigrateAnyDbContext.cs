@@ -11,7 +11,7 @@ namespace AuthPermissions.AspNetCore.StartupServices
     /// This will run EF Core's Migrate method on the given DbContext
     /// Note that if the database is an in-memory, then it will simply create it
     /// </summary>
-    public class StartupServiceMigrateAnyDbContext<TContext> : IStartupServiceToRunSequentially 
+    public class StartupServiceMigrateAnyDbContext<TContext> : IStartupServiceToRunSequentially
         where TContext : DbContext
     {
         /// <summary>

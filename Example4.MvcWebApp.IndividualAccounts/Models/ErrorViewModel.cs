@@ -1,5 +1,3 @@
-using System;
-
 namespace Example4.MvcWebApp.IndividualAccounts.Models
 {
     public class ErrorViewModel

@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2024 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore;
 using AuthPermissions.BaseCode.DataLayer.EfCode;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace AuthPermissions.PostgreSql;
 
@@ -17,7 +17,7 @@ public class AuthPermissionsDbContextDesignTimeContextFactory : IDesignTimeDbCon
     {
         var optionsBuilder =
             new DbContextOptionsBuilder<AuthPermissionsDbContext>();
-        optionsBuilder.UseNpgsql(connectionString, 
+        optionsBuilder.UseNpgsql(connectionString,
             b => b.MigrationsAssembly("AuthPermissions.PostgreSql"));
 
         return new AuthPermissionsDbContext(optionsBuilder.Options);

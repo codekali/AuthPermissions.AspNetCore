@@ -1,20 +1,18 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
 using AuthPermissions.AdminCode.Services;
-using AuthPermissions.AspNetCore.ShardingServices;
-using AuthPermissions.BaseCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes;
 using Example4.ShopCode.EfCoreClasses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example4.ShopCode.EfCoreCode
 {
@@ -149,7 +147,7 @@ namespace Example4.ShopCode.EfCoreCode
                 return "There was a system-level problem - see logs for more detail";
             }
 
-            
+
 
             return null; //null means OK, otherwise the delete is rolled back and the return string is shown to the user
         }

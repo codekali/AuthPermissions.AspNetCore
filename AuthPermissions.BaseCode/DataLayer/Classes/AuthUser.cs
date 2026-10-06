@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
 using LocalizeMessagesAndErrors;
 using StatusGeneric;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuthPermissions.BaseCode.DataLayer.Classes
 {
@@ -125,7 +125,7 @@ namespace AuthPermissions.BaseCode.DataLayer.Classes
         /// <returns></returns>
         public override string ToString()
         {
-            var tenantString = TenantId == null ? "" 
+            var tenantString = TenantId == null ? ""
                 : (UserTenant == null ? ", has an tenant" : $", linked to {UserTenant.TenantFullName}");
             var rolesString = _userRoles == null ? "" : $", roles = {string.Join(", ", _userRoles.Select(x => x.RoleName))}";
             return $"UserName = {UserName}, Email = {Email}, UserId = {UserId}{rolesString}{tenantString}.";

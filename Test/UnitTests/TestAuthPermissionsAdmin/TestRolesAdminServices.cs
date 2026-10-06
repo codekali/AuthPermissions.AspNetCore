@@ -46,8 +46,8 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
 
             //VERIFY
             roles.Count.ShouldEqual(3);
-            roles.Select(x => x.RoleName).ShouldEqual(new[]{"Role1", "Role2", "Role3"});
-            roles.Last().PermissionNames.ShouldEqual(new List<string>{ "Three"});
+            roles.Select(x => x.RoleName).ShouldEqual(new[] { "Role1", "Role2", "Role3" });
+            roles.Last().PermissionNames.ShouldEqual(new List<string> { "Three" });
         }
 
         [Theory]
@@ -176,7 +176,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             var service = new AuthRolesAdminService(context, _authOptionsWithTestEnum, "en".SetupAuthPLoggingLocalizer());
 
             //ATTEMPT
-            var status = await service.UpdateRoleToPermissionsAsync(roleName,  new[] { "One" },
+            var status = await service.UpdateRoleToPermissionsAsync(roleName, new[] { "One" },
                 "different description", RoleTypes.TenantAdminAdd);
 
             //VERIFY

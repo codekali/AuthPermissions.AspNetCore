@@ -11,6 +11,6 @@ public class UserOrTenantDto
         Name = name;
     }
 
-    public string Type { get;  }
+    public string Type { get; }
     public string Name { get; }
 }

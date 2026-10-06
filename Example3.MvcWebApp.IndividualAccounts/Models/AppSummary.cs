@@ -9,7 +9,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.Models
         public string AuthorizationProvider { get; } = "ASP.NET Core's individual users account";
         public string CookieOrToken { get; } = "Cookie";
         public string MultiTenant { get; } = "single level multi-tenant";
-        public string[] Databases { get; } = new []
+        public string[] Databases { get; } = new[]
         {
             "One SQL Server database shared by:",
             "- ASP.NET Core Individual accounts database",

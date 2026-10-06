@@ -39,7 +39,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             context.ChangeTracker.Clear();
 
             var authenticationServiceFactory = new StubSyncAuthenticationUsersFactory();
-            var service = new AuthUsersAdminService(context, authenticationServiceFactory, 
+            var service = new AuthUsersAdminService(context, authenticationServiceFactory,
                 _authOptionsSingle, "en".SetupAuthPLoggingLocalizer());
 
             //ATTEMPT
@@ -50,7 +50,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             {
                 _output.WriteLine(synChange.ToString());
             }
-            changes.Select(x => x.FoundChangeType.ToString()).ShouldEqual(new []{ "Update", "Create", "Delete" });
+            changes.Select(x => x.FoundChangeType.ToString()).ShouldEqual(new[] { "Update", "Create", "Delete" });
             changes.Select(x => x.ToString()).ShouldEqual(new[]
             {
                 "UPDATE: Email CHANGED, UserName CHANGED",
@@ -123,7 +123,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             {
                 _output.WriteLine(authUser.ToString());
             }
-            authUsers.Select(x => x.Email).ShouldEqual(new []{ "user1@gmail.com", "user2@newgmail.com", "user99@gmail.com" });
+            authUsers.Select(x => x.Email).ShouldEqual(new[] { "user1@gmail.com", "user2@newgmail.com", "user99@gmail.com" });
             authUsers.Select(x => x.UserName).ShouldEqual(new[] { "first last 0", "new name", "user 99" });
         }
     }

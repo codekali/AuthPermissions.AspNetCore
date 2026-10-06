@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Data;
 using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore.GetDataKeyCode;
 using AuthPermissions.AspNetCore.ShardingServices;
@@ -12,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
+using System.Data;
 using TestSupport.SeedDatabase;
 
 namespace Example6.SingleLevelSharding.EfCoreCode;
@@ -55,7 +55,7 @@ public class ShardingTenantChangeService : ITenantChangeService
             return $"There is no connection string with the name {tenant.DatabaseInfoName}.";
 
         var databaseError = await CheckDatabaseAndPossibleMigrate(context, tenant, true);
-        if (databaseError != null) 
+        if (databaseError != null)
             return databaseError;
 
         if (tenant.HasOwnDb && context.Companies.IgnoreQueryFilters().Any())
@@ -168,7 +168,7 @@ public class ShardingTenantChangeService : ITenantChangeService
             var invoicesWithLineItems = await oldContext.Invoices.AsNoTracking().Include(x => x.LineItems)
                 .ToListAsync();
 
-            
+
             //NOTE: writing the entities to the database will set the DataKey on a non-sharding tenant,
             //but if its a sharding tenant then the DataKey won't be changed, BUT if you want the DataKey cleared out see the RetailTenantChangeService.MoveHierarchicalTenantDataAsync to manually set the DataKey
             var resetter = new DataResetter(newContext);

@@ -73,9 +73,9 @@ namespace AuthPermissions.BulkLoadServices.Concrete
                     var rolesStatus = GetCheckTenantRoles(tenantDefinition.TenantRolesCommaDelimited,
                         tenantDefinition.TenantName);
                     status.CombineStatuses(rolesStatus);
-                    var tenantStatus = Tenant.CreateSingleTenant(tenantDefinition.TenantName, 
+                    var tenantStatus = Tenant.CreateSingleTenant(tenantDefinition.TenantName,
                         new StubDefaultLocalizer(), rolesStatus.Result);
-                    
+
                     if (status.CombineStatuses(tenantStatus).IsValid)
                     {
                         if ((options.TenantType & TenantTypes.AddSharding) != 0)
@@ -122,7 +122,7 @@ namespace AuthPermissions.BulkLoadServices.Concrete
                         var parent = tenantInfo.Parent == null
                             ? null
                             : await _context.Tenants.SingleAsync(x => x.TenantId == tenantInfo.Parent.CreatedTenantId);
-                        var newTenantStatus = Tenant.CreateHierarchicalTenant(fullname, parent, 
+                        var newTenantStatus = Tenant.CreateHierarchicalTenant(fullname, parent,
                             new StubDefaultLocalizer(), rolesStatus.Result);
                         _context.Add(newTenantStatus.Result);
 

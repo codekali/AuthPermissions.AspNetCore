@@ -33,7 +33,7 @@ public class TestExample2RoleChangedDetectorService
         var authOptions = new AuthPermissionsOptions { InternalData = { EnumPermissionsType = typeof(TestEnum) } };
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
         var stubFsCache = new StubFileStoreCacheClass();
-        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { new RoleChangedDetectorService(stubFsCache, authOptions)});
+        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { new RoleChangedDetectorService(stubFsCache, authOptions) });
         context.Database.EnsureCreated();
 
         await context.SetupRolesInDbAsync();
@@ -42,7 +42,7 @@ public class TestExample2RoleChangedDetectorService
         context.ChangeTracker.Clear();
         stubFsCache.ClearAll();
 
-        var authAdmin = new AuthUsersAdminService(context, new StubSyncAuthenticationUsersFactory(), 
+        var authAdmin = new AuthUsersAdminService(context, new StubSyncAuthenticationUsersFactory(),
             authOptions, "en".SetupAuthPLoggingLocalizer());
 
         //ATTEMPT
@@ -63,7 +63,7 @@ public class TestExample2RoleChangedDetectorService
         var authOptions = new AuthPermissionsOptions { InternalData = { EnumPermissionsType = typeof(TestEnum) } };
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
         var stubFsCache = new StubFileStoreCacheClass();
-                var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { new RoleChangedDetectorService(stubFsCache, authOptions)});
+        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { new RoleChangedDetectorService(stubFsCache, authOptions) });
         context.Database.EnsureCreated();
 
         await context.SetupRolesInDbAsync();
@@ -86,7 +86,7 @@ public class TestExample2RoleChangedDetectorService
         var allChanges = stubFsCache.GetAllKeyValues();
         allChanges.Count.ShouldEqual(1);
         allChanges.First().Key.ShouldEqual("ReplacementPermissionsUser1");
-        allChanges.First().Value.Select(x => (int)x).ShouldEqual(new []{1,2});
+        allChanges.First().Value.Select(x => (int)x).ShouldEqual(new[] { 1, 2 });
     }
 
     [Fact]
@@ -96,7 +96,7 @@ public class TestExample2RoleChangedDetectorService
         var authOptions = new AuthPermissionsOptions { InternalData = { EnumPermissionsType = typeof(TestEnum) } };
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
         var stubFsCache = new StubFileStoreCacheClass();
-                var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { new RoleChangedDetectorService(stubFsCache, authOptions)});
+        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { new RoleChangedDetectorService(stubFsCache, authOptions) });
         context.Database.EnsureCreated();
 
         await context.SetupRolesInDbAsync();
@@ -162,7 +162,7 @@ public class TestExample2RoleChangedDetectorService
         var authOptions = new AuthPermissionsOptions { InternalData = { EnumPermissionsType = typeof(TestEnum) } };
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
         var stubFsCache = new StubFileStoreCacheClass();
-                var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { new RoleChangedDetectorService(stubFsCache, authOptions)});
+        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> { new RoleChangedDetectorService(stubFsCache, authOptions) });
         context.Database.EnsureCreated();
 
         await context.SetupRolesInDbAsync();
@@ -183,7 +183,7 @@ public class TestExample2RoleChangedDetectorService
         }
         var allChanges = stubFsCache.GetAllKeyValues();
         allChanges.Count.ShouldEqual(2);
-        allChanges.Keys.ShouldEqual(new []{ "ReplacementPermissionsUser2", "ReplacementPermissionsUser3" });
+        allChanges.Keys.ShouldEqual(new[] { "ReplacementPermissionsUser2", "ReplacementPermissionsUser3" });
         allChanges["ReplacementPermissionsUser2"].Select(x => (int)x).ShouldEqual(new[] { 1, 3 });
         allChanges["ReplacementPermissionsUser3"].Select(x => (int)x).ShouldEqual(new[] { 1, 3 });
     }

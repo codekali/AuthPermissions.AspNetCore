@@ -3,7 +3,6 @@
 
 using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore.OpenIdCode;
-using AuthPermissions.BaseCode.SetupCode;
 using AuthPermissions.SupportCode.AzureAdServices;
 using Microsoft.Extensions.DependencyInjection;
 using Test.TestHelpers;
@@ -37,7 +36,7 @@ namespace Test.UnitTests.TestAzureAd
             services.AddTransient<ISyncAuthenticationUsers, AzureAdAccessService>();
             services.AddSingleton("en".SetupAuthPLoggingLocalizer());
             var serviceProvider = services.BuildServiceProvider();
-            
+
             var service = serviceProvider.GetService<ISyncAuthenticationUsers>();
             service.ShouldNotBeNull();
 

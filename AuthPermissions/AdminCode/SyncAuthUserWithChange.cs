@@ -20,7 +20,7 @@ namespace AuthPermissions.AdminCode
         /// <summary>
         /// Ctor for sending back the data
         /// </summary>
-        public SyncAuthUserWithChange () {}
+        public SyncAuthUserWithChange() { }
 
         /// <summary>
         /// Ctor used by sync code to build the sync change data
@@ -57,7 +57,7 @@ namespace AuthPermissions.AdminCode
             }
 
             //Now work out what the change is
-            if (Email == OldEmail &&  UserName == OldUserName)
+            if (Email == OldEmail && UserName == OldUserName)
                 FoundChangeType = SyncAuthUserChangeTypes.NoChange;
             else if (authenticationUser == null)
             {
@@ -83,7 +83,7 @@ namespace AuthPermissions.AdminCode
         /// <summary>
         /// The userId of the user (NOTE: this is not shown) 
         /// </summary>
-        public string UserId { get;  set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// The user's main email (used as one way to find the user) 

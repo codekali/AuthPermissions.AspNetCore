@@ -8,5 +8,5 @@ namespace Example1.RazorPages.IndividualAccounts;
 /// </summary>
 public class AuthPLocalizeResource
 {
-    
+
 }

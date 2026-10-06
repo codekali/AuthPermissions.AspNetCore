@@ -7,20 +7,20 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace Example6.SingleLevelSharding.EfCoreCode
 {
-    public class ShardingSingleDesignTimeContextFactory : IDesignTimeDbContextFactory<ShardingSingleDbContext>          
+    public class ShardingSingleDesignTimeContextFactory : IDesignTimeDbContextFactory<ShardingSingleDbContext>
     {
         // This connection links to an invalidate database, but that's OK as I only used the Add-Migration command
         private const string connectionString =
             "Server=(localdb)\\mssqllocaldb;Database=AuthPermissions;Trusted_Connection=True;MultipleActiveResultSets=true";
 
-        public ShardingSingleDbContext CreateDbContext(string[] args)   
+        public ShardingSingleDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder =                              
-                new DbContextOptionsBuilder<ShardingSingleDbContext>(); 
+            var optionsBuilder =
+                new DbContextOptionsBuilder<ShardingSingleDbContext>();
             optionsBuilder.UseSqlServer(connectionString, dbOptions =>
-                dbOptions.MigrationsHistoryTable(StartupExtensions.ShardingSingleDbContextHistoryName));    
+                dbOptions.MigrationsHistoryTable(StartupExtensions.ShardingSingleDbContextHistoryName));
 
-            return new ShardingSingleDbContext(optionsBuilder.Options, null); 
+            return new ShardingSingleDbContext(optionsBuilder.Options, null);
         }
     }
     /******************************************************************************

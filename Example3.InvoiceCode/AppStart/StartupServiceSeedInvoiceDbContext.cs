@@ -1,18 +1,14 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
-using Example3.InvoiceCode.EfCoreClasses;
 using Example3.InvoiceCode.EfCoreCode;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using RunMethodsSequentially;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example3.InvoiceCode.AppStart
 {

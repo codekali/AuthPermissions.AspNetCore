@@ -36,8 +36,8 @@ public class GlobalChangeTimeService : IGlobalChangeTimeService
     public void SetGlobalChangeTimeToNowUtc(int minutesToExpiration = 0)
     {
         if (minutesToExpiration > 0)
-            _fsCache.Set(ChangeAtThisTimeCacheKeyName, DateTime.UtcNow.DateTimeToTicks(), 
-                new DistributedCacheEntryOptions{ AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(minutesToExpiration) });
+            _fsCache.Set(ChangeAtThisTimeCacheKeyName, DateTime.UtcNow.DateTimeToTicks(),
+                new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(minutesToExpiration) });
         else
             _fsCache.Set(ChangeAtThisTimeCacheKeyName, DateTime.UtcNow.DateTimeToTicks());
     }

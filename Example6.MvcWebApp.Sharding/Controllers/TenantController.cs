@@ -28,7 +28,7 @@ namespace Example6.MvcWebApp.Sharding.Controllers
         [HasPermission(Example6Permissions.TenantList)]
         public async Task<IActionResult> Index(string message)
         {
-            var tenantNames = await HybridShardingTenantDto.TurnIntoDisplayFormat( _authTenantAdmin.QueryTenants())
+            var tenantNames = await HybridShardingTenantDto.TurnIntoDisplayFormat(_authTenantAdmin.QueryTenants())
                 .OrderBy(x => x.TenantName)
                 .ToListAsync();
 
@@ -46,7 +46,7 @@ namespace Example6.MvcWebApp.Sharding.Controllers
         }
 
         [HasPermission(Example6Permissions.TenantCreate)]
-        public IActionResult Create([FromServices]AuthPermissionsOptions authOptions, 
+        public IActionResult Create([FromServices] AuthPermissionsOptions authOptions,
         [FromServices] IGetSetShardingEntries shardingService)
         {
             return View(HybridShardingTenantDto.SetupForCreate(authOptions,

@@ -40,15 +40,15 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             context.SetupSingleTenantsInDb();
             context.ChangeTracker.Clear();
 
-            var service = new AuthTenantAdminService(context, _authOptionsSingle, 
-                "en".SetupAuthPLoggingLocalizer(),null, null);
+            var service = new AuthTenantAdminService(context, _authOptionsSingle,
+                "en".SetupAuthPLoggingLocalizer(), null, null);
 
             //ATTEMPT
             var tenants = service.QueryTenants().ToList();
 
             //VERIFY
             tenants.Count.ShouldEqual(3);
-            tenants.Select(x => x.TenantFullName).ShouldEqual(new[]{ "Tenant1", "Tenant2", "Tenant3" });
+            tenants.Select(x => x.TenantFullName).ShouldEqual(new[] { "Tenant1", "Tenant2", "Tenant3" });
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
 
                 //VERIFY
                 status.IsValid.ShouldBeTrue(status.GetAllErrors());
-                tenantChange.NewTenantName.ShouldEqual( "Tenant4" );
+                tenantChange.NewTenantName.ShouldEqual("Tenant4");
             }
             using (var context = new AuthPermissionsDbContext(options))
             {
@@ -154,7 +154,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
                     "en".SetupAuthPLoggingLocalizer(), tenantChange, null);
 
                 //ATTEMPT
-                var status = await service.AddSingleTenantAsync("Tenant4", new List<string>{"TenantRole1", "TenantRole2"});
+                var status = await service.AddSingleTenantAsync("Tenant4", new List<string> { "TenantRole1", "TenantRole2" });
 
                 //VERIFY
                 status.IsValid.ShouldBeTrue(status.GetAllErrors());
@@ -226,7 +226,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             status.IsValid.ShouldBeTrue(status.GetAllErrors());
             context.ChangeTracker.Clear();
             var updatedTenant = context.Tenants.Include(x => x.TenantRoles).Single();
-            updatedTenant.TenantRoles.Select(x => x.RoleName).ShouldEqual(new string[]{ "TenantRole2" });
+            updatedTenant.TenantRoles.Select(x => x.RoleName).ShouldEqual(new string[] { "TenantRole2" });
         }
 
         [Fact]
@@ -239,7 +239,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             contexts.AuthPContext.ChangeTracker.Clear();
 
             var service = new AuthTenantAdminService(contexts.AuthPContext, _authOptionsSingle,
-                "en".SetupAuthPLoggingLocalizer(), 
+                "en".SetupAuthPLoggingLocalizer(),
                 new StubRetailTenantChangeServiceFactory(contexts.RetailDbContext), null);
 
             //ATTEMPT
@@ -303,7 +303,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
 
                 //VERIFY
                 status.IsValid.ShouldBeTrue(status.GetAllErrors());
-                var deleteLogs = ((StubTenantChangeServiceFactory.StubITenantChangeService)status.Result).DeleteReturnedTuples; 
+                var deleteLogs = ((StubTenantChangeServiceFactory.StubITenantChangeService)status.Result).DeleteReturnedTuples;
                 deleteLogs.ShouldEqual(new List<(string dataKey, string fullTenantName)>
                 {
                     ("2.", "Tenant2")

@@ -112,19 +112,19 @@ namespace AuthPermissions.AdminCode.Services
             string description, RoleTypes roleType = RoleTypes.Normal)
         {
             var status = new StatusGenericLocalizer(_localizeDefault);
-            status.SetMessageFormatted("Success".ClassMethodLocalizeKey(this, true), 
+            status.SetMessageFormatted("Success".ClassMethodLocalizeKey(this, true),
                 $"Successfully added the new role {roleName}.");
 
             if (string.IsNullOrEmpty(roleName))
-                return status.AddErrorString("BadRoleName".ClassMethodLocalizeKey(this, true), 
+                return status.AddErrorString("BadRoleName".ClassMethodLocalizeKey(this, true),
                     "The RoleName isn't filled in", nameof(roleName).CamelToPascal());
             if ((await _context.RoleToPermissions.SingleOrDefaultAsync(x => x.RoleName == roleName)) != null)
                 return status.AddErrorFormattedWithParams("DuplicateRoleName".ClassMethodLocalizeKey(this, true),
                     $"There is already a Role with the name of '{roleName}'.", nameof(roleName).CamelToPascal());
-            
+
             if (permissionNames == null)
                 return status.AddErrorString("NoPermissions".ClassLocalizeKey(this, true), //common error
-                    "You must provide at least one permission name.", 
+                    "You must provide at least one permission name.",
                     permissionNames.Select(y => y.CamelToPascal()).ToArray());
 
             //NOTE: If an advanced permission (i.e. has the display attribute has AutoGenerateFilter = true) is found the roleType is updated to HiddenFromTenant
@@ -169,8 +169,8 @@ namespace AuthPermissions.AdminCode.Services
 
             var packedPermissions = _permissionType.PackPermissionsNamesWithValidation(permissionNames,
                 x => status.AddErrorFormattedWithParams("InvalidPermission".ClassLocalizeKey(this, true), //common error
-                    $"The permission name '{x}' isn't a valid name in the {_permissionType.Name} enum.", 
-                    permissionNames.Select(y => y.CamelToPascal()).ToArray()), 
+                    $"The permission name '{x}' isn't a valid name in the {_permissionType.Name} enum.",
+                    permissionNames.Select(y => y.CamelToPascal()).ToArray()),
                 () => roleType = RoleTypes.HiddenFromTenant);
 
             if (status.HasErrors)
@@ -178,7 +178,7 @@ namespace AuthPermissions.AdminCode.Services
 
             if (!packedPermissions.Any())
                 return status.AddErrorString("NoPermissions".ClassLocalizeKey(this, true), //common error 
-                    "You must provide at least one permission name.", 
+                    "You must provide at least one permission name.",
                     permissionNames.Select(y => y.CamelToPascal()).ToArray());
 
             if (originalRoleType != roleType)
@@ -186,7 +186,7 @@ namespace AuthPermissions.AdminCode.Services
                 //We need to check that the new RoleType matches where they are used
                 var roleChecker = new ChangeRoleTypeChecks(_context);
                 if (status.CombineStatuses(
-                        await roleChecker.CheckRoleTypeChangeAsync(originalRoleType, roleType,roleName, _localizeDefault)).HasErrors)
+                        await roleChecker.CheckRoleTypeChangeAsync(originalRoleType, roleType, roleName, _localizeDefault)).HasErrors)
                     return status;
             }
 
@@ -222,7 +222,7 @@ namespace AuthPermissions.AdminCode.Services
             {
                 if (usersWithRoles.Any())
                     status.AddErrorFormattedWithParams("RoleUsedUser".ClassMethodLocalizeKey(this, true),
-                        $"That role is used in {usersWithRoles.Count} AuthUsers and you didn't confirm the delete.", 
+                        $"That role is used in {usersWithRoles.Count} AuthUsers and you didn't confirm the delete.",
                     nameof(roleName).CamelToPascal());
 
                 if (tenantCount > 0)
@@ -250,7 +250,7 @@ namespace AuthPermissions.AdminCode.Services
             var successKey = "Success";
             if (usersWithRoles.Any())
             {
-                successMessages.Add( $" and removed that role from {usersWithRoles.Count} users");
+                successMessages.Add($" and removed that role from {usersWithRoles.Count} users");
                 successKey += "-RemoveUsers";
             }
             if (tenantCount > 0)

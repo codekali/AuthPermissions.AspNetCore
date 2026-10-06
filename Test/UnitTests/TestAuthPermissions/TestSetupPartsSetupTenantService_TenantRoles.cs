@@ -59,7 +59,7 @@ namespace Test.UnitTests.TestAuthPermissions
             context.ChangeTracker.Clear();
             var createdTenants = context.Tenants.Include(x => x.TenantRoles).ToList();
             createdTenants.Count.ShouldEqual(3);
-            createdTenants[0].TenantRoles.Select(x => x.RoleName).ShouldEqual(new []{ "RoleAutoAdd"});
+            createdTenants[0].TenantRoles.Select(x => x.RoleName).ShouldEqual(new[] { "RoleAutoAdd" });
             createdTenants[1].TenantRoles.Select(x => x.RoleName).ShouldEqual(new[] { "RoleAdminAdd" });
             createdTenants[2].TenantRoles.Select(x => x.RoleName).ShouldEqual(new[] { "RoleAdminAdd", "RoleAutoAdd" });
         }

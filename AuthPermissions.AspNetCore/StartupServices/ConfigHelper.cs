@@ -13,7 +13,7 @@ namespace AuthPermissions.AspNetCore.StartupServices
             var config = serviceProvider.GetRequiredService<IConfiguration>();
             var superSection = config.GetSection("SuperAdmin");
             if (superSection == null)
-                return (null,null);
+                return (null, null);
 
             return (superSection["Email"], superSection["Password"]);
         }

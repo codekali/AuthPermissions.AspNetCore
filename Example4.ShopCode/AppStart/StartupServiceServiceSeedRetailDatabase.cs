@@ -1,15 +1,13 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
 using Example4.ShopCode.EfCoreCode;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using RunMethodsSequentially;
+using System;
+using System.Threading.Tasks;
 
 namespace Example4.ShopCode.AppStart
 {

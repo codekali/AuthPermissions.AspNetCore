@@ -28,8 +28,8 @@ namespace Example6.SingleLevelSharding.AppStart
         public Invoice CreateRandomInvoice(string companyName, string? invoiceName = null)
         {
             //thanks to https://stackoverflow.com/questions/29482/how-can-i-cast-int-to-enum
-            var invoiceType = (ExampleInvoiceTypes)Enum.ToObject(typeof(ExampleInvoiceTypes), 
-                _random.Next(0, ((int)ExampleInvoiceTypes.Travel)+1));
+            var invoiceType = (ExampleInvoiceTypes)Enum.ToObject(typeof(ExampleInvoiceTypes),
+                _random.Next(0, ((int)ExampleInvoiceTypes.Travel) + 1));
 
             return CreateExampleInvoice(invoiceType, invoiceName ?? invoiceType.ToString(), companyName);
         }

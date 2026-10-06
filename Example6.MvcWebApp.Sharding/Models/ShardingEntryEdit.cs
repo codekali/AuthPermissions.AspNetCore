@@ -5,7 +5,7 @@ using AuthPermissions.BaseCode.DataLayer.Classes;
 
 namespace Example6.MvcWebApp.Sharding.Models;
 
-public class ShardingEntryEdit 
+public class ShardingEntryEdit
 {
     public ShardingEntry DatabaseInfo { get; set; }
 

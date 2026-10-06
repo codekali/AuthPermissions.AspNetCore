@@ -1,15 +1,14 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Diagnostics;
-using AuthPermissions.SupportCode.AddUsersServices;
-using Example7.SingleLevelShardingOnly.Services;
-using Example7.MvcWebApp.ShardingOnly.Models;
-using Example7.MvcWebApp.ShardingOnly.PermissionsCode;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using AuthPermissions.AspNetCore.ShardingServices;
 using AuthPermissions.BaseCode.PermissionsCode;
+using AuthPermissions.SupportCode.AddUsersServices;
+using Example7.MvcWebApp.ShardingOnly.Models;
+using Example7.MvcWebApp.ShardingOnly.PermissionsCode;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Example7.MvcWebApp.ShardingOnly.Controllers
 {

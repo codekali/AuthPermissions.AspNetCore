@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AuthPermissions.AspNetCore;
+using Example2.WebApiWithToken.IndividualAccounts.PermissionsCode;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AuthPermissions.AspNetCore;
-using Example2.WebApiWithToken.IndividualAccounts.PermissionsCode;
 
 namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
 {

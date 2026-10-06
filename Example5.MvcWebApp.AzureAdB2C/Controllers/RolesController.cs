@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using AuthPermissions.AdminCode;
+﻿using AuthPermissions.AdminCode;
 using ExamplesCommonCode.CommonAdmin;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Example5.MvcWebApp.AzureAdB2C.Controllers
 {
@@ -94,7 +94,7 @@ namespace Example5.MvcWebApp.AzureAdB2C.Controllers
         public async Task<IActionResult> Delete(RoleDeleteConfirmDto input)
         {
             var status = await _authRolesAdmin.DeleteRoleAsync(input.RoleName, input.ConfirmDelete?.Trim() == input.RoleName);
-                
+
             if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });

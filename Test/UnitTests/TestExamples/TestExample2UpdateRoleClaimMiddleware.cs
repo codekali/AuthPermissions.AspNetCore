@@ -1,13 +1,13 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Security.Claims;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.PermissionsCode;
 using Example2.WebApiWithToken.IndividualAccounts.ClaimsChangeCode;
 using Example2.WebApiWithToken.IndividualAccounts.PermissionsCode;
 using Microsoft.Extensions.DependencyInjection;
 using Net.DistributedFileStoreCache;
+using System.Security.Claims;
 using Test.StubClasses;
 using Xunit;
 using Xunit.Extensions.AssertExtensions;

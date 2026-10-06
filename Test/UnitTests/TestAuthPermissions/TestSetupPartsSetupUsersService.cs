@@ -160,7 +160,7 @@ namespace Test.UnitTests.TestAuthPermissions
 
             context.ChangeTracker.Clear();
 
-            var service = new BulkLoadUsersService(context, new StubIFindUserInfoFactory(true), new AuthPermissionsOptions{TenantType = TenantTypes.SingleLevel});
+            var service = new BulkLoadUsersService(context, new StubIFindUserInfoFactory(true), new AuthPermissionsOptions { TenantType = TenantTypes.SingleLevel });
 
             //ATTEMPT
             var status = await service.AddUsersRolesToDatabaseAsync(
@@ -169,7 +169,7 @@ namespace Test.UnitTests.TestAuthPermissions
             //VERIFY
             status.IsValid.ShouldBeTrue(status.GetAllErrors());
             var users = context.AuthUsers.Include(x => x.UserTenant).ToList();
-            users.Count(x => x.UserTenant != null ).ShouldEqual(3);
+            users.Count(x => x.UserTenant != null).ShouldEqual(3);
         }
 
         [Fact]

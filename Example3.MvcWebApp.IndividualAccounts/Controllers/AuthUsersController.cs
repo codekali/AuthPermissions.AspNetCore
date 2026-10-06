@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AuthPermissions.AdminCode;
+﻿using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore;
 using AuthPermissions.BaseCode.CommonCode;
 using Example3.MvcWebApp.IndividualAccounts.Models;
@@ -10,6 +6,9 @@ using Example3.MvcWebApp.IndividualAccounts.PermissionsCode;
 using ExamplesCommonCode.CommonAdmin;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example3.MvcWebApp.IndividualAccounts.Controllers
 {
@@ -38,8 +37,8 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
         [HasPermission(Example3Permissions.UserChange)]
         public async Task<ActionResult> Edit(string userId)
         {
-            var status = await SetupManualUserChange.PrepareForUpdateAsync(userId,_authUsersAdmin);
-            if(status.HasErrors)
+            var status = await SetupManualUserChange.PrepareForUpdateAsync(userId, _authUsersAdmin);
+            if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });
 
@@ -77,7 +76,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
             var status = await _authUsersAdmin.ApplySyncChangesAsync(data);
             if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
-                    new { errorMessage = status.GetAllErrors()});
+                    new { errorMessage = status.GetAllErrors() });
 
             return RedirectToAction(nameof(Index), new { message = status.Message });
         }
@@ -110,7 +109,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
 
         public ActionResult ErrorDisplay(string errorMessage)
         {
-            return View((object) errorMessage);
+            return View((object)errorMessage);
         }
     }
 }

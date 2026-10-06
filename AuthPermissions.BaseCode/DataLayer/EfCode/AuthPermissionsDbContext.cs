@@ -80,7 +80,7 @@ namespace AuthPermissions.BaseCode.DataLayer.EfCode
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("authp");
-            
+
             //Add concurrency token to every entity 
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
             {

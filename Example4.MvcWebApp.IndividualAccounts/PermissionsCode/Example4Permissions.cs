@@ -103,7 +103,7 @@ namespace Example4.MvcWebApp.IndividualAccounts.PermissionsCode
         //Setting the AutoGenerateFilter to true in the display allows we can exclude this permissions
         //to admin users who aren't allowed alter this permissions
         //Useful when first setting up an app
-        [Display(GroupName = "SuperAdmin", Name = "AccessAll", 
+        [Display(GroupName = "SuperAdmin", Name = "AccessAll",
             Description = "This allows the user to access every feature", AutoGenerateFilter = true)]
         AccessAll = ushort.MaxValue,
     }

@@ -25,7 +25,7 @@ namespace Example7.MvcWebApp.ShardingOnly.Controllers
         [HasPermission(Example7Permissions.TenantList)]
         public async Task<IActionResult> Index(string message)
         {
-            var tenantNames = await ShardingOnlyTenantDto.TurnIntoDisplayFormat( _authTenantAdmin.QueryTenants())
+            var tenantNames = await ShardingOnlyTenantDto.TurnIntoDisplayFormat(_authTenantAdmin.QueryTenants())
                 .OrderBy(x => x.TenantName)
                 .ToListAsync();
 
@@ -106,7 +106,7 @@ namespace Example7.MvcWebApp.ShardingOnly.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [HasPermission(Example7Permissions.TenantDelete)]
-        public async Task<IActionResult> Delete(ShardingOnlyTenantDto input, [FromServices]IShardingOnlyTenantAddRemove service)
+        public async Task<IActionResult> Delete(ShardingOnlyTenantDto input, [FromServices] IShardingOnlyTenantAddRemove service)
         {
             var status = await service.DeleteTenantAsync(input.TenantId);
 

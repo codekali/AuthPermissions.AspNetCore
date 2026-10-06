@@ -1,9 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using AuthPermissions.BaseCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes;
@@ -11,6 +8,9 @@ using AuthPermissions.BaseCode.DataLayer.EfCode;
 using LocalizeMessagesAndErrors.UnitTestingCode;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace AuthPermissions.AspNetCore.JwtTokenCode
 {
@@ -31,7 +31,7 @@ namespace AuthPermissions.AspNetCore.JwtTokenCode
         /// <param name="claimsCalculator"></param>
         /// <param name="context"></param>
         /// <param name="logger"></param>
-        public TokenBuilder(AuthPermissionsOptions options, 
+        public TokenBuilder(AuthPermissionsOptions options,
             IClaimsCalculator claimsCalculator,
             AuthPermissionsDbContext context,
             ILogger<TokenBuilder> logger)

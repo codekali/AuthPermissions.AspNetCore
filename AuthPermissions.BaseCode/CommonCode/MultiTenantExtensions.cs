@@ -31,7 +31,7 @@ public static class MultiTenantExtensions
             throw new AuthPermissionsException(
                 "The Tenant DataKey is only correct if the tenant primary key is set");
 
-        
+
         return isHierarchical || !hasItsOwnDb
             ? parentDataKey + $"{tenantId}." //This works for single-level because the parentDataKey is null in that case
             : DataKeyNoQueryFilter;

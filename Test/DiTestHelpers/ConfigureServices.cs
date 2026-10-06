@@ -62,7 +62,7 @@ namespace Test.DiTestHelpers
             }
             else
             {
-                var aspNetAuthConnection = SetupSqliteInMemoryConnection(); 
+                var aspNetAuthConnection = SetupSqliteInMemoryConnection();
                 services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(aspNetAuthConnection));
             }
         }

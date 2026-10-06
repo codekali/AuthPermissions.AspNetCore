@@ -42,7 +42,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             {
                 _output.WriteLine(tenant.ToString());
             }
-            tenants.Select(x => x.TenantFullName).ToArray().ShouldEqual(new []
+            tenants.Select(x => x.TenantFullName).ToArray().ShouldEqual(new[]
             {
                 "Company",
                 "Company | West Coast",
@@ -261,7 +261,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             retails.Count.ShouldEqual(5);
 
             var deletedIds = ((RetailTenantChangeService)status.Result).DeletedTenantIds;
-            deletedIds.ShouldEqual(new List<int>{ 6, 7, 4, 2 });
+            deletedIds.ShouldEqual(new List<int> { 6, 7, 4, 2 });
         }
     }
 }

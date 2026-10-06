@@ -14,8 +14,8 @@ public class CreateTenantDto
 
     public TenantVersionTypes GetTenantVersionType()
     {
-        return string.IsNullOrWhiteSpace(Version) 
-            ? TenantVersionTypes.NotSet 
+        return string.IsNullOrWhiteSpace(Version)
+            ? TenantVersionTypes.NotSet
             : Enum.Parse<TenantVersionTypes>(Version);
     }
 

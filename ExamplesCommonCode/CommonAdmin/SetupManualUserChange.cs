@@ -1,19 +1,18 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using AuthPermissions;
 using AuthPermissions.AdminCode;
-using AuthPermissions.BaseCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
 using AuthPermissions.BaseCode.SetupCode;
 using LocalizeMessagesAndErrors;
 using StatusGeneric;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ExamplesCommonCode.CommonAdmin
 {
@@ -28,13 +27,13 @@ namespace ExamplesCommonCode.CommonAdmin
         /// The userId of the user (NOTE: this is not show)
         /// </summary>
         [Required(AllowEmptyStrings = false)]
-        [MaxLength(AuthDbConstants.UserIdSize)] 
+        [MaxLength(AuthDbConstants.UserIdSize)]
         public string UserId { get; set; }
         /// <summary>
         /// The user's main email (used as one way to find the user) 
         /// </summary>
         [Required(AllowEmptyStrings = false)]
-        [MaxLength(AuthDbConstants.EmailSize)] 
+        [MaxLength(AuthDbConstants.EmailSize)]
         public string Email { get; set; }
         /// <summary>
         /// The user's name
@@ -45,7 +44,7 @@ namespace ExamplesCommonCode.CommonAdmin
         /// <summary>
         /// The AuthRoles for this AuthUser
         /// </summary>
-        public List<string> RoleNames { set; get; } 
+        public List<string> RoleNames { set; get; }
 
         /// <summary>
         /// The name of the AuthP Tenant for this AuthUser (can be null)

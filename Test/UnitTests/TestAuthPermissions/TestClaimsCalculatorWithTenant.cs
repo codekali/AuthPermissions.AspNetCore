@@ -30,7 +30,7 @@ namespace Test.UnitTests.TestAuthPermissions
 
             context.ChangeTracker.Clear();
 
-            var service = new ClaimsCalculator(context, new AuthPermissionsOptions{ TenantType =  TenantTypes.SingleLevel }, new List<IClaimsAdder>());
+            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.SingleLevel }, new List<IClaimsAdder>());
 
             //ATTEMPT
             var claims = await service.GetClaimsForAuthUserAsync("User1");
@@ -53,7 +53,7 @@ namespace Test.UnitTests.TestAuthPermissions
 
             context.ChangeTracker.Clear();
 
-            var service = new ClaimsCalculator(context, new AuthPermissionsOptions{ TenantType =  TenantTypes.SingleLevel }, new List<IClaimsAdder>());
+            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.SingleLevel }, new List<IClaimsAdder>());
 
             //ATTEMPT
             var claims = await service.GetClaimsForAuthUserAsync("User1");
@@ -97,7 +97,7 @@ namespace Test.UnitTests.TestAuthPermissions
 
             context.ChangeTracker.Clear();
 
-            var service = new ClaimsCalculator(context, new AuthPermissionsOptions{ TenantType =  TenantTypes.SingleLevel }, new List<IClaimsAdder>());
+            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.SingleLevel }, new List<IClaimsAdder>());
 
             //ATTEMPT
             var claims = await service.GetClaimsForAuthUserAsync("User1");
@@ -115,8 +115,8 @@ namespace Test.UnitTests.TestAuthPermissions
             context.Database.EnsureCreated();
 
             var tenant = AuthPSetupHelpers.CreateTestSingleTenantOk("Tenant1");
-            var role = new RoleToPermissions("Role1", null, $"{((char) 1)}");
-            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null, 
+            var role = new RoleToPermissions("Role1", null, $"{((char)1)}");
+            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null,
                 new List<RoleToPermissions>() { role }, tenant);
 
             context.AddRange(tenant, role, user);
@@ -124,7 +124,7 @@ namespace Test.UnitTests.TestAuthPermissions
 
             context.ChangeTracker.Clear();
 
-            var service = new ClaimsCalculator(context, new AuthPermissionsOptions{ TenantType =  TenantTypes.SingleLevel }, new List<IClaimsAdder>());
+            var service = new ClaimsCalculator(context, new AuthPermissionsOptions { TenantType = TenantTypes.SingleLevel }, new List<IClaimsAdder>());
 
             //ATTEMPT
             var claims = await service.GetClaimsForAuthUserAsync("User1");
@@ -147,7 +147,7 @@ namespace Test.UnitTests.TestAuthPermissions
             var tenant = AuthPSetupHelpers.CreateTestSingleTenantOk("Tenant1");
             tenant.UpdateShardingState("MyConnectionName", false);
             var role = new RoleToPermissions("Role1", null, $"{((char)1)}");
-            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null, 
+            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null,
                 new List<RoleToPermissions>() { role }, tenant);
 
             context.AddRange(tenant, role, user);
@@ -155,8 +155,8 @@ namespace Test.UnitTests.TestAuthPermissions
 
             context.ChangeTracker.Clear();
 
-            var service = new ClaimsCalculator(context, 
-                new AuthPermissionsOptions { TenantType = TenantTypes.SingleLevel | TenantTypes.AddSharding }, 
+            var service = new ClaimsCalculator(context,
+                new AuthPermissionsOptions { TenantType = TenantTypes.SingleLevel | TenantTypes.AddSharding },
                 new List<IClaimsAdder>());
 
             //ATTEMPT
@@ -182,7 +182,7 @@ namespace Test.UnitTests.TestAuthPermissions
             var tenant = AuthPSetupHelpers.CreateTestSingleTenantOk("Tenant1");
             tenant.UpdateShardingState("MyConnectionName", true);
             var role = new RoleToPermissions("Role1", null, $"{((char)1)}");
-            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null, 
+            var user = AuthPSetupHelpers.CreateTestAuthUserOk("User1", "User1@g.com", null,
                 new List<RoleToPermissions>() { role }, tenant);
 
             context.AddRange(tenant, role, user);

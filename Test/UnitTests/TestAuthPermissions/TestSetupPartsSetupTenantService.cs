@@ -146,13 +146,13 @@ namespace Test.UnitTests.TestAuthPermissions
                 TenantType = TenantTypes.HierarchicalTenant
             };
             var tenantDef = AuthPSetupHelpers.GetHierarchicalDefinitionCompany();
-            tenantDef.Add(new ("Company"));
+            tenantDef.Add(new("Company"));
 
             //ATTEMPT
             var status = await service.AddTenantsToDatabaseAsync(tenantDef, authOptions);
 
             //VERIFY
-            status.IsValid.ShouldBeFalse(); 
+            status.IsValid.ShouldBeFalse();
             status.Errors.Count.ShouldEqual(1);
             status.Errors.Single().ToString().ShouldEqual("There is already a Tenant with a value: name = Company");
         }

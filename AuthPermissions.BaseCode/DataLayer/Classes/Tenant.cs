@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
 using LocalizeMessagesAndErrors;
 using StatusGeneric;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuthPermissions.BaseCode.DataLayer.Classes
 {
@@ -111,7 +111,7 @@ namespace AuthPermissions.BaseCode.DataLayer.Classes
         /// <param name="localizeDefault">localization service</param>
         /// <param name="tenantRoles">Optional: add Roles that have a <see cref="RoleTypes"/> of
         ///     <see cref="RoleTypes.TenantAutoAdd"/> or <see cref="RoleTypes.TenantAdminAdd"/></param>
-        public static IStatusGeneric<Tenant> CreateSingleTenant(string fullTenantName, 
+        public static IStatusGeneric<Tenant> CreateSingleTenant(string fullTenantName,
             IDefaultLocalizer localizeDefault, List<RoleToPermissions> tenantRoles = null)
         {
             var newInstance = new Tenant(fullTenantName, false);
@@ -195,7 +195,7 @@ namespace AuthPermissions.BaseCode.DataLayer.Classes
             if (Children == null)
                 throw new AuthPermissionsException("The children must be loaded to rename a hierarchical tenant");
             if (newNameAtThisLevel.Contains('|'))
-                throw new AuthPermissionsBadDataException("The tenant name must not contain the character '|' because that character is used to separate the names in the hierarchical order", 
+                throw new AuthPermissionsBadDataException("The tenant name must not contain the character '|' because that character is used to separate the names in the hierarchical order",
                     nameof(newNameAtThisLevel));
 
             TenantFullName = CombineParentNameWithTenantName(newNameAtThisLevel.Trim(), Parent?.TenantFullName);
@@ -297,8 +297,8 @@ namespace AuthPermissions.BaseCode.DataLayer.Classes
             }
 
             if (status.HasErrors || tenantRoles == null)
-                return status; 
-            
+                return status;
+
             thisTenant._tenantRoles = new HashSet<RoleToPermissions>(tenantRoles);
             return status;
         }

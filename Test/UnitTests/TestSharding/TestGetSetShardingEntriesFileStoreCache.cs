@@ -232,8 +232,8 @@ public class TestGetSetShardingEntriesFileStoreCache
 
     [Theory]
     [InlineData("SqlServer", "DefaultConnection", false)]
-    [InlineData("SqlServer", "PostgresConnection",true)]
-    public void TestAddNewShardingEntry_CorrectDatabaseProvider(string databaseType, string connectionName,  bool fail)
+    [InlineData("SqlServer", "PostgresConnection", true)]
+    public void TestAddNewShardingEntry_CorrectDatabaseProvider(string databaseType, string connectionName, bool fail)
     {
         //SETUP
         var setup = new SetupServiceToTest(true);
@@ -615,7 +615,7 @@ public class TestGetSetShardingEntriesFileStoreCache
         status.IsValid.ShouldBeFalse();
         var logs = setup.StubLocalizer.Logs;
         logs.Count.ShouldEqual(4);
-        logs[0].ActualMessage.ShouldEqual("The two Shardings with the Name of 'Other Database' do not match. "+
+        logs[0].ActualMessage.ShouldEqual("The two Shardings with the Name of 'Other Database' do not match. " +
                             "See the two sources that don't match below:");
         logs[1].ActualMessage.ShouldEqual($"FileStore Cache Entry = {fsCacheEntryToChange.ToString()}");
         logs[2].ActualMessage.ShouldEqual($"ShardingBackup Entry = {backupSharding.ToString()}");
@@ -791,7 +791,7 @@ public class TestGetSetShardingEntriesFileStoreCache
         list[1].tenantNames.ShouldEqual(new List<string> { "Tenant2" });
         list[2].shardingName.ShouldEqual("PostgreSql1");
         list[2].hasOwnDb.ShouldEqual(null);
-        list[2].tenantNames.ShouldEqual(new List<string>( ));
+        list[2].tenantNames.ShouldEqual(new List<string>());
     }
 
     //------------------------------------------------------------------------
@@ -831,7 +831,7 @@ public class TestGetSetShardingEntriesFileStoreCache
             Service = new GetSetShardingEntriesFileStoreCache(connectSnapshot,
                 new ShardingEntryOptions(hybridMode),
                 FormAuthOptionsForSharding(databaseType), AuthDbContext,
-                StubFsCache, new List<IDatabaseSpecificMethods>{new SqlServerDatabaseSpecificMethods()},
+                StubFsCache, new List<IDatabaseSpecificMethods> { new SqlServerDatabaseSpecificMethods() },
                 new TestAuthPDefaultLocalizer(StubLocalizer));
         }
 

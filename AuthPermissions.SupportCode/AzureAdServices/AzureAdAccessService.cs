@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Text.Json;
 using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore.OpenIdCode;
 using AuthPermissions.BaseCode.SetupCode;
@@ -10,6 +9,7 @@ using LocalizeMessagesAndErrors;
 using Microsoft.Extensions.Options;
 using Microsoft.Graph;
 using StatusGeneric;
+using System.Text.Json;
 
 namespace AuthPermissions.SupportCode.AzureAdServices;
 
@@ -23,8 +23,8 @@ public class AzureAdAccessService : IAzureAdAccessService
     //-------------------------------------------------------
     //private methods / classes 
 
-    private static readonly char[] NickNameInvalidChars = 
-        new char [] { '@', '(', ')', '\\', '[', ']', '"', ';', ':', '.', '<', '>', ',', ' ' };
+    private static readonly char[] NickNameInvalidChars =
+        new char[] { '@', '(', ')', '\\', '[', ']', '"', ';', ':', '.', '<', '>', ',', ' ' };
 
     private readonly ClientSecretCredential _clientSecretCredential;
 

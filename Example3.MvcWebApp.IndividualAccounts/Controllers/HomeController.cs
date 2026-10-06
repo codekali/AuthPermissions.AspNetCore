@@ -1,13 +1,13 @@
-﻿using Example3.MvcWebApp.IndividualAccounts.Models;
+﻿using AuthPermissions.BaseCode.PermissionsCode;
+using AuthPermissions.SupportCode.AddUsersServices;
+using Example3.MvcWebApp.IndividualAccounts.Models;
+using Example3.MvcWebApp.IndividualAccounts.PermissionsCode;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using AuthPermissions.SupportCode.AddUsersServices;
-using Example3.MvcWebApp.IndividualAccounts.PermissionsCode;
-using Microsoft.AspNetCore.Authorization;
 using System.Linq;
-using AuthPermissions.BaseCode.PermissionsCode;
+using System.Threading.Tasks;
 
 namespace Example3.MvcWebApp.IndividualAccounts.Controllers
 {
@@ -44,7 +44,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
         public async Task<IActionResult> CreateTenant([FromServices] ISignInAndCreateTenant userRegisterInvite,
             string tenantName, string email, string password, string version, bool isPersistent)
         {
-            var newUserData = new AddNewUserDto { Email = email, Password = password, IsPersistent = isPersistent};
+            var newUserData = new AddNewUserDto { Email = email, Password = password, IsPersistent = isPersistent };
             var newTenantData = new AddNewTenantDto { TenantName = tenantName, Version = version };
             var status = await userRegisterInvite.SignUpNewTenantWithVersionAsync(newUserData, newTenantData,
                 Example3CreateTenantVersions.TenantSetupData);

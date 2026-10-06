@@ -20,7 +20,7 @@ namespace Example1.RazorPages.IndividualAccounts.PermissionsCode
         //This is an example of what to do with permission you don't used anymore.
         //You don't want its number to be reused as it could cause problems 
         //Just mark it as obsolete and the PermissionDisplay code won't show it
-        [Obsolete("Some message to say why obsoleted, e.g. split into two members xxx and yyy in version 2.10.0")] 
+        [Obsolete("Some message to say why obsoleted, e.g. split into two members xxx and yyy in version 2.10.0")]
         [Display(GroupName = "Old", Name = "Not used", Description = "example of old permission")]
         OldPermissionNotUsed = 100,
 
@@ -33,7 +33,7 @@ namespace Example1.RazorPages.IndividualAccounts.PermissionsCode
         //Setting the AutoGenerateFilter to true in the display allows we can exclude this permissions
         //to admin users who aren't allowed alter this permissions
         //Useful for multi-tenant applications where you can set up company-level admin users
-        [Display(GroupName = "SuperAdmin", Name = "AccessAll", 
+        [Display(GroupName = "SuperAdmin", Name = "AccessAll",
             Description = "This allows the user to access every feature", AutoGenerateFilter = true)]
         AccessAll = ushort.MaxValue,
     }

@@ -1,5 +1,3 @@
-using System;
-
 namespace Example5.MvcWebApp.AzureAdB2C.Models
 {
     public class ErrorViewModel

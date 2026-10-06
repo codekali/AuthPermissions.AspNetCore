@@ -14,10 +14,10 @@ namespace Test.UnitTests.TestAuthPermissions
         public void TestPackPermissionsIntoString()
         {
             //SETUP
-            var enums = new TestEnum[] {TestEnum.One, TestEnum.Three};
+            var enums = new TestEnum[] { TestEnum.One, TestEnum.Three };
 
             //ATTEMPT
-            var packed = typeof(TestEnum).PackPermissionsNames(enums.Select(x => x.ToString())) ;
+            var packed = typeof(TestEnum).PackPermissionsNames(enums.Select(x => x.ToString()));
 
             //VERIFY
             packed.ShouldEqual($"{(char)1}{(char)3}");
@@ -29,7 +29,7 @@ namespace Test.UnitTests.TestAuthPermissions
             //SETUP
 
             //ATTEMPT
-            var packed = typeof(TestEnum).PackCommaDelimitedPermissionsNames("One, Three") ;
+            var packed = typeof(TestEnum).PackCommaDelimitedPermissionsNames("One, Three");
 
             //VERIFY
             packed.ShouldEqual($"{(char)1}{(char)3}");

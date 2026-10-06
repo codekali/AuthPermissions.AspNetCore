@@ -24,6 +24,6 @@ namespace AuthPermissions.AspNetCore
             permission.GetType().ThrowExceptionIfEnumIsNotCorrect();
         }
     }
-   
+
 
 }

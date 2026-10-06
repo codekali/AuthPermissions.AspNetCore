@@ -8,11 +8,11 @@ namespace Example5.MvcWebApp.AzureAdB2C.Models
         public string Application { get; } = "ASP.NET Core MVC";
         public string AuthorizationProvider { get; } = "Azure Active Directory (Azure AD)";
         public string CookieOrToken { get; } = "Cookie";
-        public string[] Databases { get; } = new []
+        public string[] Databases { get; } = new[]
         {
             "AuthPermissions' database only"
         };
-        public string Note { get; } = "This example assumes the Azure AD is linked to a company, i.e. users are created outside the application." ;
+        public string Note { get; } = "This example assumes the Azure AD is linked to a company, i.e. users are created outside the application.";
 
         public string WhatTypeOfAuthUser { get; set; }
     }

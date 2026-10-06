@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Example5.MvcWebApp.AzureAdB2C.PermissionCode
@@ -56,7 +55,7 @@ namespace Example5.MvcWebApp.AzureAdB2C.PermissionCode
         //Setting the AutoGenerateFilter to true in the display allows we can exclude this permissions
         //to admin users who aren't allowed alter this permissions
         //Useful for multi-tenant applications where you can set up company-level admin users where you can hide some higher-level permissions
-        [Display(GroupName = "SuperAdmin", Name = "AccessAll", 
+        [Display(GroupName = "SuperAdmin", Name = "AccessAll",
             Description = "This allows the user to access every feature", AutoGenerateFilter = true)]
         AccessAll = ushort.MaxValue,
     }

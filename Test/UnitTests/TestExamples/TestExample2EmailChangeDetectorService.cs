@@ -22,7 +22,7 @@ public class TestExample2EmailChangeDetectorService
         //SETUP
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
         var stubFsCache = new StubFileStoreCacheClass();
-        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent> 
+        var context = new AuthPermissionsDbContext(options, new List<IDatabaseStateChangeEvent>
             { new EmailChangeDetectorService(stubFsCache) });
         context.Database.EnsureCreated();
 
@@ -32,7 +32,7 @@ public class TestExample2EmailChangeDetectorService
         context.ChangeTracker.Clear();
         stubFsCache.ClearAll();
 
-        var authAdmin = new AuthUsersAdminService(context, new StubSyncAuthenticationUsersFactory(), 
+        var authAdmin = new AuthUsersAdminService(context, new StubSyncAuthenticationUsersFactory(),
             new AuthPermissionsOptions(), "en".SetupAuthPLoggingLocalizer());
 
         //ATTEMPT

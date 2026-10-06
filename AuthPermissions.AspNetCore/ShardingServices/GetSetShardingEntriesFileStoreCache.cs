@@ -9,7 +9,6 @@ using AuthPermissions.BaseCode.SetupCode;
 using LocalizeMessagesAndErrors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Net.DistributedFileStoreCache;
 using StatusGeneric;
 
@@ -58,15 +57,15 @@ public class GetSetShardingEntriesFileStoreCache : IGetSetShardingEntries
     /// <param name="fsCache"></param>
     /// <param name="databaseProviderMethods"></param>
     /// <param name="localizeProvider"></param>
-    public GetSetShardingEntriesFileStoreCache(IOptionsSnapshot<ConnectionStringsOption> connectionsAccessor, 
+    public GetSetShardingEntriesFileStoreCache(IOptionsSnapshot<ConnectionStringsOption> connectionsAccessor,
         ShardingEntryOptions defaultInformationOptions,
-        AuthPermissionsOptions options, AuthPermissionsDbContext authDbContext, 
+        AuthPermissionsOptions options, AuthPermissionsDbContext authDbContext,
         IDistributedFileStoreCacheClass fsCache, IEnumerable<IDatabaseSpecificMethods> databaseProviderMethods,
         IAuthPDefaultLocalizer localizeProvider)
     {
         //thanks to https://stackoverflow.com/questions/37287427/get-multiple-connection-strings-in-appsettings-json-without-ef
         _connectionDict = connectionsAccessor?.Value ?? throw new ArgumentNullException(nameof(connectionsAccessor));
- 
+
         _shardingEntryOptions = defaultInformationOptions ?? throw new ArgumentNullException(nameof(defaultInformationOptions));
         _options = options ?? throw new ArgumentNullException(nameof(options));
         _authDbContext = authDbContext ?? throw new ArgumentNullException(nameof(authDbContext));
@@ -98,7 +97,7 @@ public class GetSetShardingEntriesFileStoreCache : IGetSetShardingEntries
             .Where(kv => kv.Key.StartsWith(ShardingEntryPrefix)).ToList()
             .Select(s => _fsCache.GetClassFromString<ShardingEntry>(s.Value)).ToList();
 
-        if (results.Any() || !_shardingEntryOptions.HybridMode) 
+        if (results.Any() || !_shardingEntryOptions.HybridMode)
             return results;
 
         //If no entries and HybridMode is true, then its most likely a new deployment and the cache isn't setup
@@ -121,7 +120,7 @@ public class GetSetShardingEntriesFileStoreCache : IGetSetShardingEntries
         var entry = _fsCache.GetClass<ShardingEntry>(FormShardingEntryKey(shardingEntryName));
 
         //If no entries it might because this is the first deployment and the cache isn't setup
-        return entry == null && _shardingEntryOptions.HybridMode 
+        return entry == null && _shardingEntryOptions.HybridMode
             && shardingEntryName == _options.DefaultShardingEntryName
             ? _shardingEntryOptions.ProvideDefaultShardingEntry(_options, _authDbContext)
             : entry;
@@ -478,11 +477,11 @@ public class GetSetShardingEntriesFileStoreCache : IGetSetShardingEntries
             $"Successfully {typeOfChange} the {changedInfo.Name} sharding entry.");
 
         //Check Names: not null or empty
-        if (changedInfo.Name.IsNullOrEmpty())
+        if (string.IsNullOrWhiteSpace(changedInfo.Name))
             return status.AddErrorString("NameNullOrEmpty".ClassLocalizeKey(this, true),
                 $"The {nameof(ShardingEntry.Name)} is null or empty, which isn't allowed.");
 
-        if (changedInfo.Name == _options.DefaultShardingEntryName 
+        if (changedInfo.Name == _options.DefaultShardingEntryName
             && _shardingEntryOptions.HybridMode)
             return status.AddErrorString("Name".ClassLocalizeKey(this, true),
                 $"You can't add, update or delete the default sharding entry called '{_options.DefaultShardingEntryName}'.");
@@ -522,5 +521,5 @@ public class GetSetShardingEntriesFileStoreCache : IGetSetShardingEntries
         return status;
     }
 
-    private enum ShardingChanges {Added, Updated, Deleted}
+    private enum ShardingChanges { Added, Updated, Deleted }
 }

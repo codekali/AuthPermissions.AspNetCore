@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using AuthPermissions.BaseCode;
-using Microsoft.AspNetCore.Authentication.OAuth;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace Example1.RazorPages.IndividualAccounts.Pages.Localization;
 
@@ -21,7 +15,7 @@ public class SetCultureModel : PageModel
 
     public SetCultureModel(AuthPermissionsOptions authOptions)
     {
-        _authOptions = authOptions ;
+        _authOptions = authOptions;
     }
 
     [BindProperty] public List<SelectListItem> CultureList { get; set; }

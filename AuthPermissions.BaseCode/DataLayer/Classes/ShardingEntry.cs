@@ -54,7 +54,7 @@ public class ShardingEntry : IEquatable<ShardingEntry>
     {
         if (ReferenceEquals(null, other)) return false;
         if (ReferenceEquals(this, other)) return true;
-        return Name == other.Name && DatabaseName == other.DatabaseName && 
+        return Name == other.Name && DatabaseName == other.DatabaseName &&
                ConnectionName == other.ConnectionName && DatabaseType == other.DatabaseType;
     }
 

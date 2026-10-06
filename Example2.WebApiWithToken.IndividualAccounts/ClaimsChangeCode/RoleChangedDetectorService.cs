@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.Linq;
 using AuthPermissions;
 using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode;
@@ -13,6 +11,8 @@ using AuthPermissions.BaseCode.DataLayer.EfCode;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Net.DistributedFileStoreCache;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Example2.WebApiWithToken.IndividualAccounts.ClaimsChangeCode;
 
@@ -28,7 +28,7 @@ public class RoleChangedDetectorService : IDatabaseStateChangeEvent
     private readonly AuthPermissionsOptions _options;
     private readonly ILogger<RoleChangedDetectorService> _logger;
 
-    public RoleChangedDetectorService(IDistributedFileStoreCacheClass fsCache, 
+    public RoleChangedDetectorService(IDistributedFileStoreCacheClass fsCache,
         AuthPermissionsOptions options, ILogger<RoleChangedDetectorService> logger = null)
     {
         _fsCache = fsCache;
@@ -47,7 +47,7 @@ public class RoleChangedDetectorService : IDatabaseStateChangeEvent
         var effectedUserIds = new List<string>();
 
         //This catches the changes before SaveChanges is called
-        context.SavingChanges += delegate(object dbContext, SavingChangesEventArgs args)
+        context.SavingChanges += delegate (object dbContext, SavingChangesEventArgs args)
         {
             var allTrackedEntities = ((DbContext)dbContext).ChangeTracker.Entries()
                 .ToList();
@@ -73,7 +73,7 @@ public class RoleChangedDetectorService : IDatabaseStateChangeEvent
         };
 
         //This is called if the SaveChanges was successful. At this point the database is in the correct 
-        context.SavedChanges += delegate(object dbContext, SavedChangesEventArgs args) 
+        context.SavedChanges += delegate (object dbContext, SavedChangesEventArgs args)
         {
             AddPermissionOverridesToCache((AuthPermissionsDbContext)dbContext, effectedUserIds.Distinct());
             effectedUserIds = new List<string>();
@@ -82,11 +82,15 @@ public class RoleChangedDetectorService : IDatabaseStateChangeEvent
 
     private void AddPermissionOverridesToCache(AuthPermissionsDbContext context, IEnumerable<string> effectedUserIds)
     {
-        var entriesToCache = new List<KeyValuePair<string,string>>();
+        var entriesToCache = new List<KeyValuePair<string, string>>();
         foreach (var userIdAndPackedPermission in context.AuthUsers
                      .Where(x => effectedUserIds.Contains(x.UserId))
-                     .Select(x => new{ x.UserId, packedPermissions = 
-                         x.UserRoles.Select(y => y.Role.PackedPermissionsInRole).ToList()})
+                     .Select(x => new
+                     {
+                         x.UserId,
+                         packedPermissions =
+                         x.UserRoles.Select(y => y.Role.PackedPermissionsInRole).ToList()
+                     })
                  )
         {
             //If not claims, then use empty string

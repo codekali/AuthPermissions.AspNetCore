@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using Example4.MvcWebApp.IndividualAccounts.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace Example4.MvcWebApp.IndividualAccounts.Controllers
 {

@@ -1,24 +1,23 @@
 // Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using Example1.RazorPages.IndividualAccounts.PermissionsCode;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Collections.Generic;
-using System.Globalization;
 using AuthPermissions;
 using AuthPermissions.AspNetCore;
 using AuthPermissions.AspNetCore.Services;
 using AuthPermissions.AspNetCore.StartupServices;
 using Example1.RazorPages.IndividualAccounts;
 using Example1.RazorPages.IndividualAccounts.Data;
+using Example1.RazorPages.IndividualAccounts.PermissionsCode;
 using LocalizeMessagesAndErrors;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using RunMethodsSequentially;
-using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Globalization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,7 +42,7 @@ builder.Services.AddRazorPages(options =>
 
 #region localization - defining the cultures 
 //see https://learn.microsoft.com/en-us/aspnet/core/fundamentals/localization#localization-middleware
-var supportedCultures = new[] { "en", "fr"};
+var supportedCultures = new[] { "en", "fr" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)

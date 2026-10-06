@@ -25,7 +25,7 @@ public class ShardingOnlyTenantAddRemove : IShardingOnlyTenantAddRemove
 
     /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
     public ShardingOnlyTenantAddRemove(IAuthTenantAdminService tenantAdmin,
-        IGetSetShardingEntries getSetShardings, 
+        IGetSetShardingEntries getSetShardings,
         AuthPermissionsOptions options, IAuthPDefaultLocalizer localizeProvider)
     {
         _tenantAdmin = tenantAdmin ?? throw new ArgumentNullException(nameof(tenantAdmin));

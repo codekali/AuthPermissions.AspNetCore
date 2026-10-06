@@ -41,7 +41,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
             context.AddMultipleUsersWithRolesInDb();
             context.ChangeTracker.Clear();
 
-            var service = new AuthUsersAdminService(context, null, 
+            var service = new AuthUsersAdminService(context, null,
                 _authOptionsSingle, "en".SetupAuthPLoggingLocalizer());
 
             //ATTEMPT
@@ -55,7 +55,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
                 _output.WriteLine(authUser.ToString());
             }
             users.Count.ShouldEqual(3);
-            users.OrderBy(x => x.UserId).Select(x => x.UserId).ShouldEqual(new[]{ "User1", "User2", "User3" });
+            users.OrderBy(x => x.UserId).Select(x => x.UserId).ShouldEqual(new[] { "User1", "User2", "User3" });
             users.OrderBy(x => x.Email).Select(x => x.Email).ShouldEqual(new[] { "user1@gmail.com", "user2@gmail.com", "user3@gmail.com" });
         }
 
@@ -156,7 +156,7 @@ namespace Test.UnitTests.TestAuthPermissionsAdmin
                 _authOptionsSingle, "en".SetupAuthPLoggingLocalizer());
 
             //ATTEMPT
-            var roleNames = await service.GetRoleNamesForUsersAsync("User2",addNone);
+            var roleNames = await service.GetRoleNamesForUsersAsync("User2", addNone);
 
             //VERIFY
             var expected = new List<string> { "Role1", "Role2", "Role3", "NormalRole" };

@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Security.Claims;
 using AuthPermissions.BaseCode.DataLayer.Classes;
 using AuthPermissions.BaseCode.DataLayer.EfCode;
 using AuthPermissions.BaseCode.PermissionsCode;
@@ -10,6 +9,7 @@ using AuthPermissions.SupportCode.DownStatusCode;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Net.DistributedFileStoreCache;
+using System.Security.Claims;
 using Test.StubClasses;
 using TestSupport.EfHelpers;
 using Xunit;
@@ -210,7 +210,7 @@ public class TestRedirectUsersViaStatusData
     public async Task TestTenantUserDown_SingleLevel(string dataKeyDown, bool diverted)
     {
         //SETUP
-        var handler = SetupHandler(tenantTypes:TenantTypes.SingleLevel);
+        var handler = SetupHandler(tenantTypes: TenantTypes.SingleLevel);
         string redirect = null;
         bool nextCalled = false;
 

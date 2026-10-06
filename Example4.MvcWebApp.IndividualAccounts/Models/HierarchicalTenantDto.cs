@@ -1,15 +1,15 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example4.MvcWebApp.IndividualAccounts.Models
 {
@@ -30,7 +30,7 @@ namespace Example4.MvcWebApp.IndividualAccounts.Models
         //-------------------------------------------
         //used for Create and Move
 
-        public List<KeyValuePair<int,string>> ListOfTenants { get; private set; }
+        public List<KeyValuePair<int, string>> ListOfTenants { get; private set; }
 
         public int ParentId { get; set; }
 
@@ -92,11 +92,11 @@ namespace Example4.MvcWebApp.IndividualAccounts.Models
             {
                 TenantId = tenant.TenantId,
                 TenantFullName = tenant.TenantFullName,
-                TenantName = tenant.GetTenantName(), 
+                TenantName = tenant.GetTenantName(),
                 DataKey = tenant.GetTenantDataKey(),
 
                 ListOfTenants = (await tenantAdminService.GetHierarchicalTenantChildrenViaIdAsync(tenant.TenantId))
-                    .Select(x => new KeyValuePair<int,string>(x.TenantId, x.TenantFullName) )
+                    .Select(x => new KeyValuePair<int, string>(x.TenantId, x.TenantFullName))
                     .ToList()
             };
         }

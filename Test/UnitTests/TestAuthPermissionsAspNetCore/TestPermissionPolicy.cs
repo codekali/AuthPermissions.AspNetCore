@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Reflection;
-using System.Security.Claims;
 using AuthPermissions.AspNetCore;
 using AuthPermissions.AspNetCore.PolicyCode;
 using AuthPermissions.BaseCode;
@@ -10,6 +8,8 @@ using AuthPermissions.BaseCode.PermissionsCode;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Moq;
+using System.Reflection;
+using System.Security.Claims;
 using Test.StubClasses;
 using Test.TestHelpers;
 using Xunit;
@@ -71,8 +71,8 @@ namespace Test.UnitTests.TestAuthPermissionsAspNetCore
             var authOptions = new AuthPermissionsOptions { InternalData = { EnumPermissionsType = typeof(TestEnum) } };
 
             var policyHandler = new PermissionPolicyHandler(authOptions);
-            var requirement = new PermissionRequirement( $"{enumToTest}");
-            var aspnetContext = new AuthorizationHandlerContext(new List<IAuthorizationRequirement>{ requirement }, user, null);
+            var requirement = new PermissionRequirement($"{enumToTest}");
+            var aspnetContext = new AuthorizationHandlerContext(new List<IAuthorizationRequirement> { requirement }, user, null);
 
             //ATTEMPT
             await policyHandler.HandleAsync(aspnetContext);
@@ -83,6 +83,6 @@ namespace Test.UnitTests.TestAuthPermissionsAspNetCore
 
         [HasPermission(TestEnum.Two)]
         private class WithAutoPermissions
-        {}
+        { }
     }
 }

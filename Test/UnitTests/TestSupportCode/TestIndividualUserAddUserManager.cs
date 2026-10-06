@@ -137,8 +137,12 @@ public class TestIndividualUserAddUserManager
         await context.SetupRolesInDbAsync();
 
         var service = _serviceProvider.GetRequiredService<IAddNewUserManager>();
-        var userData = new AddNewUserDto { Email = "me@gmail.com", Password = "Pas!w0d",
-            Roles = new() { "Role1", "Role2" } };
+        var userData = new AddNewUserDto
+        {
+            Email = "me@gmail.com",
+            Password = "Pas!w0d",
+            Roles = new() { "Role1", "Role2" }
+        };
 
         context.ChangeTracker.Clear();
 
@@ -150,6 +154,6 @@ public class TestIndividualUserAddUserManager
         status.IsValid.ShouldBeTrue(status.GetAllErrors());
         var userAdmin = _serviceProvider.GetRequiredService<IAuthUsersAdminService>();
         var user = (await userAdmin.FindAuthUserByEmailAsync(userData.Email)).Result;
-        user.UserRoles.Select(x => x.RoleName).ShouldEqual(new [] { "Role1", "Role2" });
+        user.UserRoles.Select(x => x.RoleName).ShouldEqual(new[] { "Role1", "Role2" });
     }
 }

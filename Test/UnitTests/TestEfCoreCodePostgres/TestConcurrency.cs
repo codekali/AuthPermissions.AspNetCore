@@ -44,7 +44,7 @@ namespace Test.UnitTests.TestEfCoreCodePostgres
 
             //ATTEMPT
             var entity = context.RoleToPermissions.Single();
-            using(var innerContext = new AuthPermissionsDbContext(options))
+            using (var innerContext = new AuthPermissionsDbContext(options))
             {
                 var innerEntity = context.RoleToPermissions.Single();
                 innerEntity.Update("XYZ");

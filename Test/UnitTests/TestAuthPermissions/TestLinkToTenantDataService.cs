@@ -156,7 +156,7 @@ public class TestLinkToTenantDataService
 
         var tenantIds = context.SetupSingleTenantsInDb();
         var tenantToLinkTo = context.Tenants.First();
-        var authUser = AuthPSetupHelpers.CreateTestAuthUserOk("user1", "user1@g.com", null, 
+        var authUser = AuthPSetupHelpers.CreateTestAuthUserOk("user1", "user1@g.com", null,
             new List<RoleToPermissions>(), tenantToLinkTo);
         context.Add(authUser);
         context.SaveChanges();

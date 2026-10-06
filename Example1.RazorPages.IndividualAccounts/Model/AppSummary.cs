@@ -9,11 +9,11 @@ namespace Example1.RazorPages.IndividualAccounts.Model
         public string AuthorizationProvider { get; } = "ASP.NET Core's individual accounts";
         public string CookieOrToken { get; } = "Cookie";
         public string MultiTenant { get; } = "- not used -";
-        public string[] Databases { get; } = new []
+        public string[] Databases { get; } = new[]
         {
             "Individual accounts: InMemory Database",
             "AuthPermissions: In-memory database (uses SQLite in-memory)"
         };
-        public string Note { get; } =  "Shows basics of Roles and permissions, plus multi-language support.";
+        public string Note { get; } = "Shows basics of Roles and permissions, plus multi-language support.";
     }
 }

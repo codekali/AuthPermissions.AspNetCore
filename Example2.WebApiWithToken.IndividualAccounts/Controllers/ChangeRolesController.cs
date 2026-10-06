@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using AuthPermissions.AdminCode;
+﻿using AuthPermissions.AdminCode;
 using Microsoft.AspNetCore.Authorization;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Net.DistributedFileStoreCache;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
 {
@@ -31,7 +30,7 @@ namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
             var allCache = _fsCache.GetAllKeyValues();
             var result = new List<string>();
             if (!allCache.Any())
-                result.Add( "No cache entries" );
+                result.Add("No cache entries");
             else
             {
                 result.AddRange(allCache.Select(entry => $"{entry.Key} = {entry.Value})"));
@@ -60,7 +59,7 @@ namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
         [AllowAnonymous]
         [HttpGet]
         [Route("ListAllUsers")]
-        public IEnumerable<string> ListAllUsers([FromServices]IAuthUsersAdminService usersAdmin)
+        public IEnumerable<string> ListAllUsers([FromServices] IAuthUsersAdminService usersAdmin)
         {
             var allUsers = usersAdmin.QueryAuthUsers()
                 .OrderBy(x => x.Email)
@@ -73,7 +72,7 @@ namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
                     .Concat(user.UserRoles.SelectMany(x => x.Role.PackedPermissionsInRole)).Distinct().ToArray());
                 result.Add($"Email: {user.Email}, UserId: {user.UserId}, Permissions:{string.Join(", ", combinedPermissions.Select(x => (int)x))}");
             }
-            
+
             return result.ToArray();
         }
 

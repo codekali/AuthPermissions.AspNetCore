@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Security.Claims;
 using AuthPermissions.AspNetCore.JwtTokenCode;
 using AuthPermissions.AspNetCore.Services;
 using AuthPermissions.BaseCode;
 using AuthPermissions.BaseCode.DataLayer.EfCode;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 using Test.StubClasses;
 using Test.TestHelpers;
 using TestSupport.EfHelpers;
@@ -166,7 +166,7 @@ namespace Test.UnitTests.TestAuthPermissions
             using var context = new AuthPermissionsDbContext(options);
             context.Database.EnsureCreated();
 
-            var setup = new SetupTokenBuilder(context, new TimeSpan(0,0,1));
+            var setup = new SetupTokenBuilder(context, new TimeSpan(0, 0, 1));
             var tokenAndRefresh = await setup.TokenBuilder.GenerateTokenAndRefreshTokenAsync("User1");
             context.SaveChanges();
             await Task.Delay(1000);
@@ -263,7 +263,7 @@ namespace Test.UnitTests.TestAuthPermissions
                 _context = context;
 
                 var options = new AuthPermissionsOptions
-                    {ConfigureAuthPJwtToken = AuthPSetupHelpers.CreateTestJwtSetupData(expiresIn)};
+                { ConfigureAuthPJwtToken = AuthPSetupHelpers.CreateTestJwtSetupData(expiresIn) };
                 AuthPJwtConfiguration = options.ConfigureAuthPJwtToken;
                 var claimsCalc = new StubClaimsCalculator("This:That");
                 var logger = new LoggerFactory(new[] { new MyLoggerProviderActionOut(Logs.Add) }).CreateLogger<TokenBuilder>();

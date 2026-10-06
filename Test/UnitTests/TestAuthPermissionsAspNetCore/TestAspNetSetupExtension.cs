@@ -39,7 +39,7 @@ namespace Test.UnitTests.TestAuthPermissionsAspNetCore
             var services = this.SetupServicesForTest();
 
             //ATTEMPT
-            var ex = await Assert.ThrowsAsync<AuthPermissionsException>(async () => 
+            var ex = await Assert.ThrowsAsync<AuthPermissionsException>(async () =>
                 await services.RegisterAuthPermissions<EnumNotShort>()
                 .UsingInMemoryDatabase()
                 .SetupForUnitTestingAsync());
@@ -215,7 +215,7 @@ namespace Test.UnitTests.TestAuthPermissionsAspNetCore
         public void TestSetupAspNetCoreRegisterAuthenticationProviderReader()
         {
             //SETUP
-            
+
             var services = this.SetupServicesForTest();
             services.RegisterAuthPermissions<TestEnum>()
                 .UsingInMemoryDatabase()
@@ -257,6 +257,6 @@ namespace Test.UnitTests.TestAuthPermissionsAspNetCore
             startupServices[1].ShouldBeType<StartupServiceBulkLoadAuthPInfo>();
         }
 
-        private enum EnumNotShort {One, Two}
+        private enum EnumNotShort { One, Two }
     }
 }

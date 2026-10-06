@@ -40,7 +40,7 @@ namespace AuthPermissions.BaseCode.DataLayer.EfCode
             }
 
             //This doesn't be changed to StatusGenericLocalizer because this is just sending a valid status
-            return new StatusGenericHandler(); 
+            return new StatusGenericHandler();
         }
 
         /// <summary>
@@ -94,12 +94,12 @@ namespace AuthPermissions.BaseCode.DataLayer.EfCode
 
             //This shouldn't happen, but just in case
             status.AddErrorFormatted(
-                "UnknownException".StaticClassLocalizeKey(typeof(SaveChangesExtensions), true), 
+                "UnknownException".StaticClassLocalizeKey(typeof(SaveChangesExtensions), true),
                 $"There was a {exceptionType} on an auth class.");
 
             return status;
         }
 
-        private enum ExceptionTypes {Duplicate, ConcurrencyError}
+        private enum ExceptionTypes { Duplicate, ConcurrencyError }
     }
 }

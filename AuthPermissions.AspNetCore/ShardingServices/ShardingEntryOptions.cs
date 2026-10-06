@@ -80,7 +80,7 @@ public class ShardingEntryOptions : ShardingEntry
     {
         if (!HybridMode)
             return null; //Empty - used when all tenants have their own database, i.e. all sharding
-        
+
         FormDefaultShardingEntry(options, authPContext);
         return this;
     }

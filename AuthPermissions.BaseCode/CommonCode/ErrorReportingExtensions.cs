@@ -39,7 +39,7 @@ namespace AuthPermissions.BaseCode.CommonCode
             if (duplicates.Any())
             {
                 var errorStrings = duplicates
-                    .Select(x => 
+                    .Select(x =>
                         string.Join(", ", x.Select(y => y.Value).ToList()) + $" all have the value {x.Key}");
 
                 throw new AuthPermissionsException(

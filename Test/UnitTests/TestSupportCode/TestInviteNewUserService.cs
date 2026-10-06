@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Text.Json;
 using AuthPermissions;
 using AuthPermissions.AdminCode.Services;
 using AuthPermissions.BaseCode;
@@ -10,6 +9,7 @@ using AuthPermissions.BaseCode.DataLayer.EfCode;
 using AuthPermissions.BaseCode.SetupCode;
 using AuthPermissions.SupportCode.AddUsersServices;
 using Microsoft.IdentityModel.Tokens;
+using System.Text.Json;
 using Test.StubClasses;
 using Test.TestHelpers;
 using TestSupport.EfHelpers;
@@ -28,18 +28,19 @@ public class TestInviteNewUserService
         _output = output;
     }
 
-    private static async Task<(InviteNewUserService service, AuthUsersAdminService userAdmin, EncryptDecryptService encryptService)> 
-        CreateInviteAndAddSenderAuthUserAsync(AuthPermissionsDbContext context, 
+    private static async Task<(InviteNewUserService service, AuthUsersAdminService userAdmin, EncryptDecryptService encryptService)>
+        CreateInviteAndAddSenderAuthUserAsync(AuthPermissionsDbContext context,
         TenantTypes tenantType = TenantTypes.NotUsingTenants)
     {
         var authOptions = new AuthPermissionsOptions
         {
-            EncryptionKey = "asfafffggdgerxbd", TenantType = tenantType
+            EncryptionKey = "asfafffggdgerxbd",
+            TenantType = tenantType
         };
-        var userAdmin = new AuthUsersAdminService(context, new StubSyncAuthenticationUsersFactory(), 
+        var userAdmin = new AuthUsersAdminService(context, new StubSyncAuthenticationUsersFactory(),
             authOptions, "en".SetupAuthPLoggingLocalizer());
         var encryptService = new EncryptDecryptService(authOptions);
-        var service = new InviteNewUserService(authOptions, context, encryptService, userAdmin, 
+        var service = new InviteNewUserService(authOptions, context, encryptService, userAdmin,
                 new StubAddNewUserManager(userAdmin), "en".SetupAuthPLoggingLocalizer());
 
         if (tenantType == TenantTypes.SingleLevel)
@@ -48,7 +49,7 @@ public class TestInviteNewUserService
             await context.BulkLoadHierarchicalTenantInDbAsync();
         context.SaveChanges();
 
-        context.AddOneUserWithRolesAndOptionalTenant("User1@g.com", 
+        context.AddOneUserWithRolesAndOptionalTenant("User1@g.com",
             tenantType != TenantTypes.NotUsingTenants ? "Company" : null);
         return (service, userAdmin, encryptService);
     }
@@ -66,7 +67,7 @@ public class TestInviteNewUserService
         context.ChangeTracker.Clear();
 
         //ATTEMPT
-        var dto = new AddNewUserDto { Email = "User2@g.com", Roles = new List<string>{"Role1"}};
+        var dto = new AddNewUserDto { Email = "User2@g.com", Roles = new List<string> { "Role1" } };
         var status = await tuple.service.CreateInviteUserToJoinAsync(dto, "User1");
 
         //VERIFY
@@ -87,7 +88,7 @@ public class TestInviteNewUserService
         context.ChangeTracker.Clear();
 
         //ATTEMPT
-        var dto = new AddNewUserDto { Email = "User2@g.com"};
+        var dto = new AddNewUserDto { Email = "User2@g.com" };
         var status = await tuple.service.CreateInviteUserToJoinAsync(dto, "User1");
 
         //VERIFY
@@ -187,7 +188,7 @@ public class TestInviteNewUserService
 
         //ATTEMPT
         var expiresTicks = DateTime.UtcNow.AddHours(1).Ticks;
-        var dto = new AddNewUserDto { Email = "User2@g.com", Roles = new List<string> {"< none >"}, TimeInviteExpires = expiresTicks};
+        var dto = new AddNewUserDto { Email = "User2@g.com", Roles = new List<string> { "< none >" }, TimeInviteExpires = expiresTicks };
         var status = await tuple.service.CreateInviteUserToJoinAsync(dto, "User1");
 
         //VERIFY
@@ -219,7 +220,7 @@ public class TestInviteNewUserService
         context.ChangeTracker.Clear();
 
         //ATTEMPT
-        var dto = new AddNewUserDto { Email = "User2@g.com", Roles = new List<string> { "Role1" }, TenantId = joinerTenantId};
+        var dto = new AddNewUserDto { Email = "User2@g.com", Roles = new List<string> { "Role1" }, TenantId = joinerTenantId };
         var status = await tuple.service.CreateInviteUserToJoinAsync(dto, "User1");
 
         //VERIFY
@@ -313,10 +314,14 @@ public class TestInviteNewUserService
         context.Database.EnsureCreated();
 
         var tuple = await CreateInviteAndAddSenderAuthUserAsync(context);
-        
+
         var expiresTicks = DateTime.UtcNow.AddSeconds(secondsOffset).Ticks;
-        var dto = new AddNewUserDto { Email = "User2@g.com", Roles = new List<string> { CommonConstants.EmptyItemName }, 
-            TimeInviteExpires = expiresTicks };
+        var dto = new AddNewUserDto
+        {
+            Email = "User2@g.com",
+            Roles = new List<string> { CommonConstants.EmptyItemName },
+            TimeInviteExpires = expiresTicks
+        };
         var inviteStatus = await tuple.service.CreateInviteUserToJoinAsync(dto, "User1");
 
         context.ChangeTracker.Clear();

@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading.Tasks;
-using AuthPermissions.AdminCode;
+﻿using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.SupportCode.AddUsersServices;
 using Example3.MvcWebApp.IndividualAccounts.Models;
 using Example3.MvcWebApp.IndividualAccounts.PermissionsCode;
 using ExamplesCommonCode.CommonAdmin;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example3.MvcWebApp.IndividualAccounts.Controllers
 {
@@ -67,7 +67,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
             {
                 AllRoleNames = await _authUsersAdmin.GetRoleNamesForUsersAsync(User.GetUserIdFromUser()),
                 ExpirationTimesDropdown = inviteService.ListOfExpirationTimes()
-            }; 
+            };
 
             return View(setupInvite);
         }
@@ -77,16 +77,20 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> InviteUser([FromServices] IInviteNewUserService inviteUserServiceService, InviteUserSetup data)
         {
-            var addUserData = new AddNewUserDto { Email = data.Email, Roles = data.RoleNames, 
-                TimeInviteExpires = data.InviteExpiration}; 
+            var addUserData = new AddNewUserDto
+            {
+                Email = data.Email,
+                Roles = data.RoleNames,
+                TimeInviteExpires = data.InviteExpiration
+            };
             var status = await inviteUserServiceService.CreateInviteUserToJoinAsync(addUserData, User.GetUserIdFromUser());
             if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });
 
-            var inviteUrl = AbsoluteAction(Url, nameof(HomeController.AcceptInvite), "Home",  new { verify = status.Result });
+            var inviteUrl = AbsoluteAction(Url, nameof(HomeController.AcceptInvite), "Home", new { verify = status.Result });
 
-            return View("InviteUserUrl", new InviteUserResult( status.Message, inviteUrl));
+            return View("InviteUserUrl", new InviteUserResult(status.Message, inviteUrl));
         }
 
         public ActionResult ErrorDisplay(string errorMessage)

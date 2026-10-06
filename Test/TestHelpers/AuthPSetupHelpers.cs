@@ -52,7 +52,7 @@ namespace Test.TestHelpers
         /// <returns></returns>
         public static Tenant CreateTestSingleTenantOk(string fullTenantName, List<RoleToPermissions> tenantRoles = null)
         {
-            var status = Tenant.CreateSingleTenant(fullTenantName, 
+            var status = Tenant.CreateSingleTenant(fullTenantName,
                 "en".SetupAuthPLoggingLocalizer().DefaultLocalizer, tenantRoles);
             status.IfErrorsTurnToException();
             return status.Result;
@@ -131,7 +131,7 @@ namespace Test.TestHelpers
             context.SaveChanges();
         }
 
-        public static void AddOneUserWithRolesAndOptionalTenant(this AuthPermissionsDbContext context, 
+        public static void AddOneUserWithRolesAndOptionalTenant(this AuthPermissionsDbContext context,
             string email = "User1@g.com", string tenantName = null)
         {
             var rolePer1 = new RoleToPermissions("Role1", null, $"{(char)1}{(char)3}");
@@ -140,7 +140,7 @@ namespace Test.TestHelpers
             var tenant = tenantName != null
                 ? context.Tenants.Single(x => x.TenantFullName == tenantName)
                 : null;
-            var user = CreateTestAuthUserOk("User1", email, null, 
+            var user = CreateTestAuthUserOk("User1", email, null,
                 new List<RoleToPermissions>() { rolePer1 }, tenant);
             context.Add(user);
             context.SaveChanges();
@@ -157,8 +157,8 @@ namespace Test.TestHelpers
             var userIds = userIdCommaDelimited.Split(',');
             for (int i = 0; i < userIds.Length; i++)
             {
-                var user = CreateTestAuthUserOk(userIds[i], $"{userIds[i]}@gmail.com", 
-                    $"first last {i}", rolesInDb.Take(i+1).ToList());
+                var user = CreateTestAuthUserOk(userIds[i], $"{userIds[i]}@gmail.com",
+                    $"first last {i}", rolesInDb.Take(i + 1).ToList());
                 context.Add(user);
             }
             context.SaveChanges();
@@ -166,7 +166,7 @@ namespace Test.TestHelpers
 
         public static List<int> SetupSingleTenantsInDb(this AuthPermissionsDbContext context, InvoicesDbContext invoiceContext = null)
         {
-            var tenants = new []
+            var tenants = new[]
             {
                 CreateTestSingleTenantOk("Tenant1"),
                 CreateTestSingleTenantOk("Tenant2"),
@@ -259,7 +259,7 @@ namespace Test.TestHelpers
             RetailDbContext retailContext = null)
         {
             var service = new BulkLoadTenantsService(context);
-            var authOptions = new AuthPermissionsOptions {TenantType = TenantTypes.HierarchicalTenant};
+            var authOptions = new AuthPermissionsOptions { TenantType = TenantTypes.HierarchicalTenant };
 
             (await service.AddTenantsToDatabaseAsync(GetHierarchicalDefinitionCompany(), authOptions)).IsValid.ShouldBeTrue();
             if (retailContext != null)

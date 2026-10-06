@@ -47,7 +47,7 @@ public class SignInAndCreateTenant : ISignInAndCreateTenant
     /// <param name="logger"></param>
     /// <param name="getShardingDb"></param>
     public SignInAndCreateTenant(AuthPermissionsOptions options, IAuthTenantAdminService tenantAdmin,
-        IAddNewUserManager addNewUserManager, IAuthPDefaultLocalizer localizeProvider, 
+        IAddNewUserManager addNewUserManager, IAuthPDefaultLocalizer localizeProvider,
         ILogger<SignInAndCreateTenant> logger,
         ISignUpGetShardingEntry getShardingDb = null)
     {
@@ -231,7 +231,7 @@ public class SignInAndCreateTenant : ISignInAndCreateTenant
         return _options.TenantType.IsSingleLevel()
             ? await _tenantAdmin.AddSingleTenantAsync(tempTenantName, tenantRoles, _hasOwnDb, shardingEntryName)
             //Note: The added tenant is always a top-level tenant, i.e. it has no parent
-            : await _tenantAdmin.AddHierarchicalTenantAsync(tempTenantName, 
+            : await _tenantAdmin.AddHierarchicalTenantAsync(tempTenantName,
                 0, tenantRoles, _hasOwnDb, shardingEntryName);
     }
 
@@ -243,7 +243,7 @@ public class SignInAndCreateTenant : ISignInAndCreateTenant
     /// <param name="tenantData"></param>
     /// <param name="versionData"></param>
     /// <returns></returns>
-    private async Task<IStatusGeneric<AddNewUserDto>> SignInTenantUserAsync(Tenant newTenant, AddNewUserDto newUser, 
+    private async Task<IStatusGeneric<AddNewUserDto>> SignInTenantUserAsync(Tenant newTenant, AddNewUserDto newUser,
         AddNewTenantDto tenantData, MultiTenantVersionData versionData)
     {
         var status = new StatusGenericLocalizer<AddNewUserDto>(_localizeDefault);

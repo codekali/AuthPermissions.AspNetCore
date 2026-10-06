@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using AuthPermissions.AdminCode;
+﻿using AuthPermissions.AdminCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.PermissionsCode;
 using ExamplesCommonCode.CommonAdmin;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Example3.MvcWebApp.IndividualAccounts.Controllers
 {
@@ -14,7 +14,7 @@ namespace Example3.MvcWebApp.IndividualAccounts.Controllers
             return View(User);
         }
 
-        public async Task<IActionResult> AuthUserInfo([FromServices]IAuthUsersAdminService service)
+        public async Task<IActionResult> AuthUserInfo([FromServices] IAuthUsersAdminService service)
         {
             if (User.Identity?.IsAuthenticated == true)
             {

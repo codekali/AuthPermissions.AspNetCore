@@ -44,7 +44,7 @@ public class TestSignInAndCreateTenant
         {
             TenantType = tenantType
         };
-        var userAdmin = new AuthUsersAdminService(context, new StubSyncAuthenticationUsersFactory(), 
+        var userAdmin = new AuthUsersAdminService(context, new StubSyncAuthenticationUsersFactory(),
             authOptions, "en".SetupAuthPLoggingLocalizer());
         var tenantAdmin = new AuthTenantAdminService(context, authOptions,
             "en".SetupAuthPLoggingLocalizer(), new StubTenantChangeServiceFactory(), null);
@@ -53,7 +53,7 @@ public class TestSignInAndCreateTenant
                 new[] { new MyLoggerProviderActionOut(log => _logs.Add(log)) })
             .CreateLogger<SignInAndCreateTenant>();
         var service = new SignInAndCreateTenant(authOptions, tenantAdmin,
-            new StubAddNewUserManager(userAdmin, tenantAdmin, loginReturnsError), 
+            new StubAddNewUserManager(userAdmin, tenantAdmin, loginReturnsError),
             "en".SetupAuthPLoggingLocalizer(), logger,
             overrideNormal ?? new StubISignUpGetShardingEntry("en".SetupAuthPLoggingLocalizer(), false));
 
@@ -79,7 +79,7 @@ public class TestSignInAndCreateTenant
         context.ChangeTracker.Clear();
 
         //ATTEMPT
-        var userData = new AddNewUserDto{Email = "me!@g1.com"};
+        var userData = new AddNewUserDto { Email = "me!@g1.com" };
         var tenantData = new AddNewTenantDto { TenantName = "New Tenant", Version = version };
         var status = await tuple.service.SignUpNewTenantWithVersionAsync(userData, tenantData, Example3CreateTenantVersions.TenantSetupData);
 
@@ -116,7 +116,7 @@ public class TestSignInAndCreateTenant
             Email = "me!@g1.com",
             Roles = new List<string> { "Role1", "Role3" }
         };
-        var tenantData = new AddNewTenantDto { TenantName = "New Tenant", HasOwnDb = hasOwnDb};
+        var tenantData = new AddNewTenantDto { TenantName = "New Tenant", HasOwnDb = hasOwnDb };
         var status = await tuple.service.SignUpNewTenantAsync(userData, tenantData);
 
         //VERIFY
@@ -127,7 +127,7 @@ public class TestSignInAndCreateTenant
         tenant.TenantRoles.Count.ShouldEqual(0);
         tenant.HasOwnDb.ShouldEqual(hasOwnDb);
         var user = context.AuthUsers.Include(x => x.UserRoles).Single();
-        user.UserRoles.Select(x => x.RoleName).ToArray().ShouldEqual(new []{ "Role1", "Role3" });
+        user.UserRoles.Select(x => x.RoleName).ToArray().ShouldEqual(new[] { "Role1", "Role3" });
     }
 
 
@@ -292,7 +292,7 @@ public class TestSignInAndCreateTenant
         var rolesSetup = new BulkLoadRolesService(context, authSettings);
         await rolesSetup.AddRolesToDatabaseAsync(Example3AppAuthSetupData.RolesDefinition);
 
-        var userData = new AddNewUserDto { Email = "Me!@g1.com"};
+        var userData = new AddNewUserDto { Email = "Me!@g1.com" };
         var tenantData = new AddNewTenantDto
         {
             TenantName = "New Tenant",
@@ -324,7 +324,7 @@ public class TestSignInAndCreateTenant
         context.Database.EnsureCreated();
 
         var getDbCauseError = new StubISignUpGetShardingEntry("en".SetupAuthPLoggingLocalizer(), true);
-        var tuple = CreateISignInAndCreateTenant(context, TenantTypes.SingleLevel | TenantTypes.AddSharding, 
+        var tuple = CreateISignInAndCreateTenant(context, TenantTypes.SingleLevel | TenantTypes.AddSharding,
             getDbCauseError, true);
         var authSettings = new AuthPermissionsOptions { InternalData = { EnumPermissionsType = typeof(Example3Permissions) } };
         var rolesSetup = new BulkLoadRolesService(context, authSettings);

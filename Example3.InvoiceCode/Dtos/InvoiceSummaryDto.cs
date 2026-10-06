@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
+using Example3.InvoiceCode.EfCoreClasses;
 using System;
 using System.Linq;
-using Example3.InvoiceCode.EfCoreClasses;
 
 namespace Example3.InvoiceCode.Dtos
 {

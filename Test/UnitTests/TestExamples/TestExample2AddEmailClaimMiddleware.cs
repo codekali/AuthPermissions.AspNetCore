@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Security.Claims;
 using AuthPermissions.BaseCode.DataLayer.EfCode;
 using Example2.WebApiWithToken.IndividualAccounts.ClaimsChangeCode;
 using Microsoft.Extensions.DependencyInjection;
 using Net.DistributedFileStoreCache;
+using System.Security.Claims;
 using Test.StubClasses;
 using Test.TestHelpers;
 using TestSupport.EfHelpers;
@@ -29,7 +29,7 @@ public class TestExample2AddEmailClaimMiddleware
     private static IServiceProvider GetServiceProvider(StubFileStoreCacheClass stubFsCache)
     {
         var options = SqliteInMemory.CreateOptions<AuthPermissionsDbContext>();
-        var context = new AuthPermissionsDbContext(options, new []{new EmailChangeDetectorService(stubFsCache) });
+        var context = new AuthPermissionsDbContext(options, new[] { new EmailChangeDetectorService(stubFsCache) });
         context.Database.EnsureCreated();
         context.Add(AuthPSetupHelpers.CreateTestAuthUserOk("userId", "email@google.com", null));
         context.SaveChanges();

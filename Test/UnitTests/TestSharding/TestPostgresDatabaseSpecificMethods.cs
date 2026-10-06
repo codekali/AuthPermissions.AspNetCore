@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Collections.Concurrent;
-using AuthPermissions.AspNetCore.ShardingServices;
 using AuthPermissions.AspNetCore.ShardingServices.DatabaseSpecificMethods;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes;
@@ -11,6 +9,7 @@ using AuthPermissions.BaseCode.SetupCode;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using StatusGeneric;
+using System.Collections.Concurrent;
 using Test.TestHelpers;
 using TestSupport.EfHelpers;
 using Xunit;
@@ -63,7 +62,7 @@ public class TestPostgresDatabaseSpecificMethods
         var service = new PostgresDatabaseSpecificMethods();
 
         //ATTEMPT
-        var ex = Assert.Throws<AuthPermissionsException>(() => 
+        var ex = Assert.Throws<AuthPermissionsException>(() =>
             service.FormShardingConnectionString(SetupDatabaseInformation(true),
             "host=127.0.0.1;Username=xxx;Password=yyy"));
 

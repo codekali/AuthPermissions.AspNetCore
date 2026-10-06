@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.ComponentModel.DataAnnotations;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
+using System.ComponentModel.DataAnnotations;
 
 namespace AuthPermissions.BaseCode.DataLayer.Classes
 {

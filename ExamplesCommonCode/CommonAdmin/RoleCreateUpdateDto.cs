@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2021 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
+using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
+using AuthPermissions.BaseCode.PermissionsCode;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
-using AuthPermissions.BaseCode.PermissionsCode;
 
 namespace ExamplesCommonCode.CommonAdmin
 {
@@ -28,7 +28,7 @@ namespace ExamplesCommonCode.CommonAdmin
                 .Select(x => x.PermissionName);
         }
 
-        public static RoleCreateUpdateDto SetupForCreateUpdate(string roleName, string description, 
+        public static RoleCreateUpdateDto SetupForCreateUpdate(string roleName, string description,
             List<string> rolePermissions, List<PermissionDisplay> allPermissionNames,
             RoleTypes roleType = RoleTypes.Normal)
         {

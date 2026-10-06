@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Linq.Expressions;
-using System.Reflection;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.DataLayer.Classes.SupportTypes;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace AuthPermissions.BaseCode.DataLayer.EfCode
 {
@@ -57,7 +57,7 @@ namespace AuthPermissions.BaseCode.DataLayer.EfCode
                     BindingFlags.NonPublic | BindingFlags.Static)
                 .MakeGenericMethod(entityData.ClrType);
             var filter = methodToCall.Invoke(null, new object[] { dataKey });
-            entityData.SetQueryFilter((LambdaExpression) filter);
+            entityData.SetQueryFilter((LambdaExpression)filter);
             entityData.GetProperty(nameof(IDataKeyFilterReadWrite.DataKey)).SetIsUnicode(false); //Make unicode
             entityData.GetProperty(nameof(IDataKeyFilterReadWrite.DataKey)).SetMaxLength(AuthDbConstants.TenantDataKeySize);
             entityData.AddIndex(entityData.FindProperty(nameof(IDataKeyFilterReadOnly.DataKey)));

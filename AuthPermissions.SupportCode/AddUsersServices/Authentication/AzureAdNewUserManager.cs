@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Security.Cryptography;
 using AuthPermissions.AdminCode;
 using AuthPermissions.AspNetCore.OpenIdCode;
 using AuthPermissions.BaseCode.CommonCode;
@@ -11,6 +10,7 @@ using AuthPermissions.SupportCode.AzureAdServices;
 using LocalizeMessagesAndErrors;
 using Microsoft.Extensions.Options;
 using StatusGeneric;
+using System.Security.Cryptography;
 
 namespace AuthPermissions.SupportCode.AddUsersServices.Authentication;
 
@@ -33,7 +33,7 @@ public class AzureAdNewUserManager : IAddNewUserManager
     /// <param name="azureAccessService"></param>
     /// <param name="azureOptions"></param>
     /// <param name="localizeProvider"></param>
-    public AzureAdNewUserManager(IAuthUsersAdminService authUsersAdmin, IAuthTenantAdminService tenantAdminService, 
+    public AzureAdNewUserManager(IAuthUsersAdminService authUsersAdmin, IAuthTenantAdminService tenantAdminService,
         IAzureAdAccessService azureAccessService, IOptions<AzureAdOptions> azureOptions, IAuthPDefaultLocalizer localizeProvider)
     {
         _authUsersAdmin = authUsersAdmin;

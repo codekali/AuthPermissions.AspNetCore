@@ -5,24 +5,24 @@ using AuthPermissions;
 using AuthPermissions.AspNetCore;
 using AuthPermissions.AspNetCore.Services;
 using AuthPermissions.AspNetCore.StartupServices;
+using AuthPermissions.BaseCode.DataLayer;
 using AuthPermissions.BaseCode.SetupCode;
+using AuthPermissions.SupportCode.DownStatusCode;
 using Example4.MvcWebApp.IndividualAccounts.Data;
 using Example4.MvcWebApp.IndividualAccounts.PermissionsCode;
 using Example4.ShopCode.AppStart;
 using Example4.ShopCode.Dtos;
 using Example4.ShopCode.EfCoreCode;
+using GenericServices.Setup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Net.DistributedFileStoreCache;
 using RunMethodsSequentially;
 using System.Reflection;
-using AuthPermissions.BaseCode.DataLayer;
-using AuthPermissions.SupportCode.DownStatusCode;
-using GenericServices.Setup;
-using Net.DistributedFileStoreCache;
 
 var builder = WebApplication.CreateBuilder(args);
 

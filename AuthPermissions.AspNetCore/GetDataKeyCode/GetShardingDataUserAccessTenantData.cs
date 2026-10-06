@@ -23,7 +23,7 @@ namespace AuthPermissions.AspNetCore.GetDataKeyCode
         /// <param name="accessor"></param>
         /// <param name="connectionService">Service to get the current connection string for the  </param>
         /// <param name="linkService"></param>
-        public GetShardingDataUserAccessTenantData(IHttpContextAccessor accessor, 
+        public GetShardingDataUserAccessTenantData(IHttpContextAccessor accessor,
             IGetSetShardingEntries connectionService,
             ILinkToTenantDataService linkService)
         {

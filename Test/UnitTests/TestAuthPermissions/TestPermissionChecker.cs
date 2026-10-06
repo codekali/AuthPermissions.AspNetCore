@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System.Security.Claims;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.PermissionsCode;
+using System.Security.Claims;
 using Test.TestHelpers;
 using Xunit;
 using Xunit.Extensions.AssertExtensions;
@@ -49,10 +49,10 @@ namespace Test.UnitTests.TestAuthPermissions
         public void TestThrowExceptionIfEnumIsNotCorrect()
         {
             //SETUP
-            
+
 
             //ATTEMPT
-            Assert.Throws<AuthPermissionsException>( () => typeof(BadEnum).ThrowExceptionIfEnumIsNotCorrect());
+            Assert.Throws<AuthPermissionsException>(() => typeof(BadEnum).ThrowExceptionIfEnumIsNotCorrect());
 
             //VERIFY
         }
@@ -76,8 +76,8 @@ namespace Test.UnitTests.TestAuthPermissions
         }
 
 
-        enum BadEnum {One, Two};
+        enum BadEnum { One, Two };
 
-        enum  DuplicateEnum : ushort { One = 1, Two = 1, Three = 3, Four = 4, Five = 4, Six = 4 };
+        enum DuplicateEnum : ushort { One = 1, Two = 1, Three = 3, Four = 4, Five = 4, Six = 4 };
     }
 }

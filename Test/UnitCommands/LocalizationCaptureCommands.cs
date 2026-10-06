@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2023 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
+using CsvHelper;
 using System.Globalization;
 using System.Resources.NetStandard;
-using CsvHelper;
 using Test.StubClasses;
 using TestSupport.Attributes;
 using Xunit.Abstractions;
@@ -53,7 +53,7 @@ public class LocalizationCaptureCommands
         var csvFilePath = "C:\\Users\\JonPSmith\\Desktop\\AuthServices - french.csv";
         var resxFilePath = "C:\\Users\\JonPSmith\\source\\repos\\AuthPermissions.AspNetCore\\" +
                            "Example1.RazorPages.IndividualAccounts\\Resources\\BaseCode.LocalizeResources.NEW.resx";
-        
+
         //see https://joshclose.github.io/CsvHelper/getting-started/#reading-a-csv-file
         using (var reader = new StreamReader(csvFilePath))
         using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))

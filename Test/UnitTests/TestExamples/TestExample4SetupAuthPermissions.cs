@@ -6,7 +6,6 @@ using AuthPermissions.BaseCode.DataLayer.EfCode;
 using AuthPermissions.BaseCode.SetupCode;
 using AuthPermissions.BulkLoadServices.Concrete;
 using Example4.MvcWebApp.IndividualAccounts.PermissionsCode;
-using TestSupport.Attributes;
 using TestSupport.EfHelpers;
 using Xunit;
 using Xunit.Abstractions;
@@ -48,8 +47,8 @@ namespace Test.UnitTests.TestExamples
             var service = new BulkLoadTenantsService(context);
 
             //ATTEMPT
-            var status = await service.AddTenantsToDatabaseAsync(Example4AppAuthSetupData.TenantDefinition, 
-                new AuthPermissionsOptions{TenantType = TenantTypes.HierarchicalTenant});
+            var status = await service.AddTenantsToDatabaseAsync(Example4AppAuthSetupData.TenantDefinition,
+                new AuthPermissionsOptions { TenantType = TenantTypes.HierarchicalTenant });
 
             //VERIFY
             status.IsValid.ShouldBeTrue(status.GetAllErrors());

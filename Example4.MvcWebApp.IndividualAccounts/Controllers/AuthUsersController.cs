@@ -1,19 +1,17 @@
 ﻿// Copyright (c) 2022 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AuthPermissions.AdminCode;
-using AuthPermissions.BaseCode;
 using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.SetupCode;
 using Example4.MvcWebApp.IndividualAccounts.Models;
 using ExamplesCommonCode.CommonAdmin;
-using LocalizeMessagesAndErrors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Example4.MvcWebApp.IndividualAccounts.Controllers
 {
@@ -65,8 +63,8 @@ namespace Example4.MvcWebApp.IndividualAccounts.Controllers
 
         public async Task<ActionResult> Edit(string userId)
         {
-            var status = await SetupManualUserChange.PrepareForUpdateAsync(userId,_authUsersAdmin);
-            if(status.HasErrors)
+            var status = await SetupManualUserChange.PrepareForUpdateAsync(userId, _authUsersAdmin);
+            if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });
 
@@ -124,7 +122,7 @@ namespace Example4.MvcWebApp.IndividualAccounts.Controllers
                 return RedirectToAction(nameof(ErrorDisplay),
                     new { errorMessage = status.GetAllErrors() });
 
-            return RedirectToAction(nameof(Index), new {message = status.Message});
+            return RedirectToAction(nameof(Index), new { message = status.Message });
         }
 
 
@@ -135,14 +133,14 @@ namespace Example4.MvcWebApp.IndividualAccounts.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]        
+        [ValidateAntiForgeryToken]
         //NOTE: the input be called "data" because we are using JavaScript to send that info back
         public async Task<ActionResult> SyncUsers(IEnumerable<SyncAuthUserWithChange> data)
         {
             var status = await _authUsersAdmin.ApplySyncChangesAsync(data);
             if (status.HasErrors)
                 return RedirectToAction(nameof(ErrorDisplay),
-                    new { errorMessage = status.GetAllErrors()});
+                    new { errorMessage = status.GetAllErrors() });
 
             return RedirectToAction(nameof(Index), new { message = status.Message });
         }
@@ -174,7 +172,7 @@ namespace Example4.MvcWebApp.IndividualAccounts.Controllers
 
         public ActionResult ErrorDisplay(string errorMessage)
         {
-            return View((object) errorMessage);
+            return View((object)errorMessage);
         }
     }
 }

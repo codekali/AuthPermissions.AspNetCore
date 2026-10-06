@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using AuthPermissions;
+﻿using AuthPermissions;
 using AuthPermissions.AspNetCore.JwtTokenCode;
 using AuthPermissions.AspNetCore.Services;
-using AuthPermissions.BaseCode.CommonCode;
 using AuthPermissions.BaseCode.PermissionsCode;
 using Example2.WebApiWithToken.IndividualAccounts.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
 {
@@ -58,7 +56,7 @@ namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
         [Route("quickauthenticate")]
         public async Task<ActionResult> QuickAuthenticate()
         {
-            return await Authenticate(new LoginUserModel {Email = "Super@g1.com", Password = "Super@g1.com"});
+            return await Authenticate(new LoginUserModel { Email = "Super@g1.com", Password = "Super@g1.com" });
         }
 
         /// <summary>
@@ -91,7 +89,7 @@ namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
         [Route("quickauthenticatewithrefresh")]
         public Task<ActionResult<TokenAndRefreshToken>> QuickAuthenticateWithRefresh()
         {
-            return AuthenticateWithRefresh(new LoginUserModel {Email = "Super@g1.com", Password = "Super@g1.com"});
+            return AuthenticateWithRefresh(new LoginUserModel { Email = "Super@g1.com", Password = "Super@g1.com" });
         }
 
         /// <summary>
@@ -118,7 +116,7 @@ namespace Example2.WebApiWithToken.IndividualAccounts.Controllers
         [Authorize]
         [HttpPost]
         [Route("logout")]
-        public async Task<ActionResult> Logout([FromServices]IDisableJwtRefreshToken service, string refreshToken)
+        public async Task<ActionResult> Logout([FromServices] IDisableJwtRefreshToken service, string refreshToken)
         {
             await service.LogoutUserViaRefreshTokenAsync(refreshToken);
 

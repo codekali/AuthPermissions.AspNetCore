@@ -27,7 +27,7 @@ namespace AuthPermissions
         /// <param name="services">The DI register instance</param>
         /// <param name="options">optional: You can set certain options to change the way this library works</param>
         /// <returns></returns>
-        public static AuthSetupData RegisterAuthPermissions<TEnumPermissions>(this IServiceCollection services, 
+        public static AuthSetupData RegisterAuthPermissions<TEnumPermissions>(this IServiceCollection services,
             Action<AuthPermissionsOptions> options = null) where TEnumPermissions : Enum
         {
             var authOptions = new AuthPermissionsOptions();
@@ -148,7 +148,7 @@ namespace AuthPermissions
                 dbOptions.UseSqlite(inMemoryConnection);
                 EntityFramework.Exceptions.Sqlite.ExceptionProcessorExtensions.UseExceptionProcessor(dbOptions);
             });
-                
+
             setupData.Options.InternalData.AuthPDatabaseType = AuthPDatabaseTypes.SqliteInMemory;
 
             //We build a local AuthPermissionsDbContext and create the database

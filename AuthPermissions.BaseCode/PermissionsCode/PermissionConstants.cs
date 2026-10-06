@@ -26,6 +26,6 @@ namespace AuthPermissions.BaseCode.PermissionsCode
         /// <summary>
         /// This is the char for the AccessAll permission
         /// </summary>
-        public const char PackedAccessAllPermission = (char) ushort.MaxValue;
+        public const char PackedAccessAllPermission = (char)ushort.MaxValue;
     }
 }

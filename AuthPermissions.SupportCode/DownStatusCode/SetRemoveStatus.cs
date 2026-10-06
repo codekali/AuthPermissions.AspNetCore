@@ -110,13 +110,13 @@ public class SetRemoveStatus : ISetRemoveStatus
         await _fsCache.SetAsync(FormCacheKey(downType, mainKey), mainKey);
         string secondaryKey = null;
         if (parentId != default)
-        { 
+        {
             secondaryKey = await _authTenantAdmin.FormedTenantCombinedKeyAsync(parentId);
             await _fsCache.SetAsync(FormCacheKey(downType, secondaryKey), secondaryKey);
         }
 
         await Task.Delay(delayMs);
-        return () =>  RemoveTenantDownAsync(downType, mainKey, secondaryKey);
+        return () => RemoveTenantDownAsync(downType, mainKey, secondaryKey);
     }
 
     //Not used, but kept in case it might be useful 
